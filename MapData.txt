@@ -1,0 +1,6 @@
+[0,0,0]
+1,0,0,0|||src/rooms/starting_room.tscn
+[1,0,0]
+-1,0,1,0|||src/rooms/first_hallway.tscn
+[2,0,0]
+0,0,-1,0|||src/rooms/first_hallway.tscn

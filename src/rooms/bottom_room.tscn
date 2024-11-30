@@ -1,0 +1,51 @@
+[gd_scene load_steps=10 format=4 uid="uid://g8juhyvwwm1j"]
+
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_iyf4l"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tile_set.tres" id="2_dk65p"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_lkpej"]
+[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/collectible.tscn" id="3_im1hk"]
+[ext_resource type="Texture2D" uid="uid://bfapkwjmp8tb7" path="res://assets/pinch_pickup.png" id="4_g6ce1"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_g6lfr"]
+[ext_resource type="Texture2D" uid="uid://h5qgcaivkcu0" path="res://assets/item_pedestrial.png" id="5_vleto"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsky7"]
+shader = ExtResource("2_lkpej")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3c2ly"]
+size = Vector2(13.5, 17)
+
+[node name="BottomRoom" type="Node2D"]
+
+[node name="RoomInstance" parent="." instance=ExtResource("1_iyf4l")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_hsky7")
+tile_map_data = PackedByteArray("AAADAAAAAwACAAMAAAACAAAAAwACAAMAAAABAAAAAwACAAMAAAAAAAAAAwABAAMAAAAKAAAAAwABAAMAAAALAAAAAwACAAMAAAAMAAAAAwACAAMAAAANAAAAAwACAAMAAAAOAAAAAwACAAMAAAAPAAAAAwADAAAAAAAEAAAAAwACAAMAAAAFAAAAAwAFAAAAAAAGAAAAAwALAAAAAAAPAA0AAwALAAMAAAAPAAwAAwALAAIAAAAPAAsAAwALAAIAAAAPAAoAAwALAAIAAAAPAAkAAwALAAIAAAAPAAgAAwALAAIAAAAPAAcAAwALAAIAAAAPAAYAAwAHAAEAAAAPAAUAAwAAAAEAAAAPAAQAAwAAAAEAAAAPAAMAAwAAAAEAAAAPAAIAAwAAAAEAAAAPAAEAAwAAAAEAAAAAAA0AAwABAAIAAAABAA0AAwACAAMAAAACAA0AAwACAAMAAAADAA0AAwACAAMAAAAEAA0AAwACAAMAAAAFAA0AAwACAAMAAAAGAA0AAwACAAMAAAAHAA0AAwACAAMAAAAIAA0AAwACAAMAAAAJAA0AAwACAAMAAAAKAA0AAwAFAAMAAAALAA0AAwAJAAMAAAAMAA0AAwAJAAMAAAANAA0AAwAJAAMAAAAOAA0AAwAJAAMAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAEAAAAAAAUAAwAAAAEAAAAAAAYAAwAAAAEAAAAAAAcAAwAAAAEAAAAAAAgAAwAAAAEAAAAAAAkAAwAAAAEAAAAKAAoAAwAIAAEAAAAKAAsAAwAIAAEAAAAKAAwAAwAIAAEAAAAOAAoAAwAJAAIAAAANAAoAAwAJAAIAAAAMAAoAAwAJAAIAAAALAAoAAwAJAAIAAAAOAAwAAwAJAAIAAAAOAAsAAwAJAAIAAAANAAwAAwAJAAIAAAANAAsAAwAJAAIAAAAMAAwAAwAJAAIAAAAMAAsAAwAJAAIAAAALAAwAAwAJAAIAAAALAAsAAwAJAAIAAAAAAAwAAwAAAAEAAAAAAAsAAwAAAAEAAAAAAAoAAwAAAAEAAAAGAAMAAwALAAIAAAAGAAIAAwALAAIAAAAGAAEAAwALAAIAAAAFAAIAAwAIAAEAAAAFAAEAAwAIAAEAAAAFAAMAAwAIAAEAAAAIAAQAAwACAAMAAAAHAAQAAwACAAMAAAAGAAQAAwAGAAMAAAAFAAQAAwAIAAMAAAAOAAkAAwAJAAIAAAANAAkAAwAFAAEAAAAMAAkAAwAKAAAAAAALAAkAAwAKAAAAAAAKAAkAAwAIAAAAAAAOAAgAAwAJAAIAAAAOAAcAAwAJAAIAAAANAAgAAwAIAAEAAAANAAcAAwAIAAEAAAAJAAQAAwADAAMAAAAOAAYAAwAKAAAAAAANAAYAAwAIAAAAAAA=")
+tile_set = ExtResource("2_dk65p")
+script = ExtResource("4_g6lfr")
+
+[node name="Collectible" parent="." instance=ExtResource("3_im1hk")]
+position = Vector2(39, 185)
+item_name = "pinch"
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible"]
+texture = ExtResource("4_g6ce1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(39, 200)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.25, -0.5)
+shape = SubResource("RectangleShape2D_3c2ly")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("5_vleto")

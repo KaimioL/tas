@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=4 uid="uid://c5fmbtfxleamt"]
+
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_niddc"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tile_set.tres" id="2_fydue"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_g8xfv"]
+[ext_resource type="PackedScene" uid="uid://btowd1n5m0126" path="res://src/moving_platform.tscn" id="3_nkr33"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_y1qot"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rxpk"]
+shader = ExtResource("2_g8xfv")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[node name="LastBossRoom" type="Node2D"]
+
+[node name="RoomInstance" parent="." instance=ExtResource("1_niddc")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_0rxpk")
+tile_map_data = PackedByteArray("AAAAAP//AwAKAAAAAAAAAAAAAwAGAAIAAAAAAA0AAwALAAIAAAD/////AwAIAAAAAAD//wAAAwAIAAEAAAD//wEAAwAIAAEAAAD//wIAAwAIAAEAAAD//wMAAwAIAAEAAAD//wQAAwAIAAEAAAD//wUAAwAIAAMAAAD//w0AAwAIAAEAAAAQAAAAAwALAAIAAAAPAAAAAwAFAAIAAAAOAAAAAwAJAAMAAAANAAAAAwAJAAMAAAAMAAAAAwAJAAMAAAALAAAAAwAJAAMAAAAKAAAAAwAJAAMAAAAJAAAAAwAJAAMAAAAIAAAAAwAJAAMAAAAHAAAAAwAJAAMAAAAGAAAAAwAJAAMAAAAFAAAAAwAJAAMAAAAEAAAAAwAJAAMAAAADAAAAAwAJAAMAAAACAAAAAwAJAAMAAAABAAAAAwAJAAMAAAABAP//AwAKAAAAAAACAP//AwAKAAAAAAADAP//AwAKAAAAAAAEAP//AwAKAAAAAAAFAP//AwAKAAAAAAAGAP//AwAKAAAAAAAHAP//AwAKAAAAAAAIAP//AwAKAAAAAAAJAP//AwAKAAAAAAAKAP//AwAKAAAAAAALAP//AwAKAAAAAAAMAP//AwAKAAAAAAANAP//AwAKAAAAAAAOAP//AwAKAAAAAAAPAP//AwAKAAAAAAAQAP//AwALAAAAAAAQAA0AAwALAAIAAAAQAAwAAwALAAIAAAAQAAsAAwALAAIAAAAQAAoAAwALAAIAAAAQAAkAAwALAAIAAAAQAAgAAwALAAIAAAAQAAcAAwALAAIAAAAQAAYAAwALAAIAAAAQAAUAAwALAAIAAAAQAAQAAwALAAIAAAAQAAMAAwALAAIAAAAQAAIAAwALAAIAAAAQAAEAAwALAAIAAAAPAA0AAwAIAAEAAAAPAAwAAwAIAAEAAAAPAAsAAwAIAAEAAAAPAAoAAwAIAAEAAAAPAAkAAwAIAAEAAAAPAAgAAwAIAAEAAAAPAAcAAwAIAAEAAAAPAAYAAwAIAAEAAAAPAAUAAwAIAAEAAAAPAAQAAwAIAAEAAAAPAAMAAwAIAAEAAAAPAAIAAwAIAAEAAAAPAAEAAwAIAAEAAAAQAA4AAwALAAMAAAAPAA4AAwAIAAMAAAD//w4AAwAIAAMAAAAAAA4AAwALAAMAAAAAAAEAAwALAAIAAAAAAAIAAwALAAIAAAAAAAMAAwALAAIAAAAAAAUAAwALAAMAAAAAAAQAAwALAAIAAAD//wwAAwAIAAEAAAAAAAwAAwALAAIAAAAAAAsAAwALAAIAAAD//wsAAwAIAAEAAAAAAAoAAwAGAAIAAAD//woAAwAIAAEAAAD//wkAAwAIAAAAAAAAAAkAAwAKAAAAAAABAAkAAwAKAAAAAAACAAkAAwALAAAAAAACAAoAAwALAAMAAAABAAoAAwAJAAMAAAA=")
+tile_set = ExtResource("2_fydue")
+script = ExtResource("4_y1qot")
+
+[node name="MovingPlatform" parent="." instance=ExtResource("3_nkr33")]
+position = Vector2(95, 152)
+offset = Vector2(110, 0)

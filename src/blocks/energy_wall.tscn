@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://wl5667kpe71x"]
+
+[ext_resource type="Texture2D" uid="uid://dkfaqb7ksoy58" path="res://assets/energy_wall.png" id="1_8a03m"]
+[ext_resource type="Script" path="res://src/blocks/energy_wall.gd" id="1_ws4r3"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_jujkt"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_v2pmu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s5cvb"]
+shader = ExtResource("2_jujkt")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyowv"]
+size = Vector2(5, 16)
+
+[sub_resource type="Animation" id="Animation_j2trh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p1lo3"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ah8x"]
+_data = {
+"RESET": SubResource("Animation_j2trh"),
+"idle": SubResource("Animation_p1lo3")
+}
+
+[node name="EnergyWall" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ws4r3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_s5cvb")
+texture = ExtResource("1_8a03m")
+hframes = 4
+script = ExtResource("4_v2pmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_jyowv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4ah8x")
+}
+autoplay = "idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
