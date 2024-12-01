@@ -17,6 +17,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y += 300 * delta
 		if is_on_floor():
 			if in_air == true:
+				$JumpAudio.play()
 				in_air = false
 				$Sprite2D.frame = 0
 			velocity = velocity.move_toward(Vector2.ZERO, delta * 200)

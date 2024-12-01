@@ -51,7 +51,7 @@ centered = false
 script = ExtResource("4_oq3ma")
 
 [node name="Jumper" parent="." instance=ExtResource("4_hbnpo")]
-position = Vector2(373, 424)
+position = Vector2(389, 424)
 
 [node name="Jumper2" parent="." instance=ExtResource("4_hbnpo")]
 position = Vector2(604, 424)
@@ -67,4 +67,4 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_7e4m4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(336, 336)
+position = Vector2(328, 336)

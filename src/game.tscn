@@ -113,15 +113,15 @@ _data = {
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_73b0r"]
 stream_count = 6
 stream_0/stream = ExtResource("14_hwagd")
-stream_0/volume = 0.0
+stream_0/volume = -60.0
 stream_1/stream = ExtResource("15_rxkvo")
-stream_1/volume = 0.0
+stream_1/volume = -60.0
 stream_2/stream = ExtResource("16_q6j0e")
-stream_2/volume = 0.0
+stream_2/volume = -60.0
 stream_3/stream = ExtResource("17_bk8eo")
 stream_3/volume = 0.0
 stream_4/stream = ExtResource("18_odydx")
-stream_4/volume = 0.0
+stream_4/volume = -60.0
 stream_5/stream = ExtResource("19_cotl1")
 stream_5/volume = 0.0
 
