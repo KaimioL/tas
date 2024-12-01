@@ -29,6 +29,7 @@ var aim = 0
 var health = 3
 var paused = false
 var has_float = false
+var command_lock = false
 @export var control_locked = false
 
 @onready var bullet = $Bullet
@@ -51,7 +52,23 @@ func _physics_process(delta):
 	in_wall = false
 	#if Input.is_action_pressed("debug_button"):
 		#in_wall = true
-
+	
+	if Globals.glitch_collected:
+		in_wall = true
+		
+	
+	if Input.is_action_pressed("up") and Input.is_action_pressed("down") and Input.is_action_pressed("left") and Input.is_action_pressed("right"):
+		if not command_lock:
+			hover = !hover
+			if hover == false:
+				$CanvasLayer/Label.text = "DebugHover: Disabled"
+			if hover == true:
+				$CanvasLayer/Label.text = "DebugHover: Enabled"
+			$CanvasLayer/Label.show()
+			$CanvasLayer/Timer.start()
+		command_lock = true
+	else:
+		command_lock = false
 	for i in $CollisionRayCasts.get_children():
 		if i.is_colliding():
 			in_wall = true
@@ -78,6 +95,9 @@ func _physics_process(delta):
 	if not is_on_floor_check() and on_ground_last_frame:
 		coyote_time.start()
 		coyote = true
+	
+	if not on_ground_last_frame and is_on_floor_check():
+		$LandingAudio.play()
 	
 	if hover and velocity.y > 0:
 		velocity.y = 0
@@ -132,7 +152,8 @@ func _physics_process(delta):
 	else:
 		$Sprites.state = "idle"
 	
-
+	if Globals.glitch_collected:
+		velocity.y = 40
 	
 	move_and_slide()
 
@@ -227,6 +248,7 @@ func is_on_floor_check() -> bool:
 	return false
 
 func take_damage(damage):
+	$HurtAudio.play()
 	if $InvFrames.is_playing():
 		return
 	velocity = Vector2(-200*looking_direction, -250)
@@ -239,3 +261,7 @@ func pickup_collected(pickup_name):
 		has_pinch = true
 	elif pickup_name == "float":
 		has_float = true
+
+
+func _on_timer_timeout() -> void:
+	$CanvasLayer/Label.hide()

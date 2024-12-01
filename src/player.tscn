@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ggyc1qonudkw"]
+[gd_scene load_steps=23 format=3 uid="uid://ggyc1qonudkw"]
 
 [ext_resource type="Script" path="res://src/scripts/player.gd" id="1_7jx1s"]
 [ext_resource type="Script" path="res://src/scripts/bullet.gd" id="2_21b7w"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bhpuvvdudu28a" path="res://assets/player/torso.png" id="4_qri2m"]
 [ext_resource type="Script" path="res://src/tile_map_layer.gd" id="5_5to4d"]
 [ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="8_upd2b"]
+[ext_resource type="AudioStream" uid="uid://c21no0gjkpfx2" path="res://assets/sounds/sound.wav" id="10_ooto0"]
+[ext_resource type="AudioStream" uid="uid://de76ty386nuc7" path="res://assets/sounds/landing.wav" id="11_jnx4k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqe8u"]
 size = Vector2(48, 8)
@@ -47,7 +49,7 @@ shader_parameter/distortion_effect = 0.0
 shader_parameter/negative_effect = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqybi"]
-size = Vector2(11, 31)
+size = Vector2(11, 30)
 
 [sub_resource type="Animation" id="Animation_q7dnd"]
 length = 0.001
@@ -134,6 +136,43 @@ _data = {
 "inv_frames": SubResource("Animation_j06nc")
 }
 
+[sub_resource type="Animation" id="Animation_1xtxc"]
+resource_name = "death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.384314, 0, 0.117647, 0.654902), Color(0.384314, 0, 0.117647, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_je36v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5hb"]
+_data = {
+"RESET": SubResource("Animation_je36v"),
+"death": SubResource("Animation_1xtxc")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -167,7 +206,7 @@ script = ExtResource("2_c5ll5")
 
 [node name="Legs" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2wkl7")
-position = Vector2(2, 8)
+position = Vector2(3, 7)
 texture = ExtResource("3_h0o4r")
 hframes = 8
 vframes = 2
@@ -185,7 +224,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_oqybi")
 
 [node name="CoyoteTime" type="Timer" parent="."]
@@ -218,8 +257,39 @@ libraries = {
 "": SubResource("AnimationLibrary_iol4m")
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 167.0
+offset_top = 4.0
+offset_right = 238.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 8
+text = "HoverDebug: True"
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+one_shot = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+libraries = {
+"": SubResource("AnimationLibrary_kn5hb")
+}
+
+[node name="HurtAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ooto0")
+
+[node name="LandingAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_jnx4k")
+
 [connection signal="shooted" from="." to="Sprites" method="_on_player_shooted"]
 [connection signal="timeout" from="Bullet/ShootTimer" to="Bullet" method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="Sprites/FrameTimer" to="Sprites" method="_on_frame_timer_timeout"]
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="JumpBufferTimer" to="." method="_on_jump_buffer_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="." method="_on_timer_timeout"]

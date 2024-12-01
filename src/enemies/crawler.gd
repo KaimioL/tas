@@ -26,3 +26,6 @@ func _physics_process(delta: float) -> void:
 		for b in bodies:
 			if b.has_method("take_damage"):
 				b.take_damage(damage)
+
+func _on_timer_timeout() -> void:
+	$Sprite2D.flip_h = not $Sprite2D.flip_h

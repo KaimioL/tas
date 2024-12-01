@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://705ys2ox7up6"
+path="res://.godot/imported/hurt (1).wav-c6e5cdaf8e6768aa283dc6d84ea001ea.sample"
+
+[deps]
+
+source_file="res://assets/sounds/hurt (1).wav"
+dest_files=["res://.godot/imported/hurt (1).wav-c6e5cdaf8e6768aa283dc6d84ea001ea.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

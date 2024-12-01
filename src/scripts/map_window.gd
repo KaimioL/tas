@@ -14,6 +14,9 @@ var player_location: Node2D
 # It's purely to show custom drawing on the map.
 var show_delta: bool
 
+func _process(delta: float) -> void:
+	$Label.visible = Globals.map_collected
+
 func _ready() -> void:
 	# Cellular size is total size divided by cell size.
 	SIZE = size / MetSys.CELL_SIZE
@@ -55,7 +58,8 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			# Toggle visibility when pressing M.
 			if event.keycode == KEY_M:
-				visible = not visible
+				if Globals.fake_map_collected:
+					visible = not visible
 				if visible:
 					update_offset()
 

@@ -108,6 +108,8 @@ func _update_neighbor_previews():
 
 ## Adjusts the limits of the given [param camera] to be within this room's rectangular bounds.
 func adjust_camera_limits(camera: Camera2D):
+	if camera == null:
+		return
 	camera.limit_left = 0
 	camera.limit_top = 0
 	camera.limit_right = get_size().x

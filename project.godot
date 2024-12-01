@@ -40,6 +40,11 @@ enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugi
 [global_group]
 
 player=""
+level=""
+space_station=""
+underground=""
+ground=""
+glitch=""
 
 [input]
 

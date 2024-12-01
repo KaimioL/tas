@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dk6m0x6i5unck"]
+[gd_scene load_steps=8 format=4 uid="uid://dk6m0x6i5unck"]
 
 [ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="1_c2t7k"]
 [ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tile_set.tres" id="1_kgmsv"]
@@ -17,7 +17,18 @@ shader_parameter/scan_effect = 0.0
 shader_parameter/distortion_effect = 0.0
 shader_parameter/negative_effect = 0.0
 
-[node name="SpaceStation4" type="Node2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sys46"]
+shader = ExtResource("1_c2t7k")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[node name="SpaceStation4" type="Node2D" groups=["level", "space_station"]]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_e2fsv")
@@ -29,5 +40,7 @@ script = ExtResource("3_2nja3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
+material = SubResource("ShaderMaterial_sys46")
 texture = ExtResource("3_p30ri")
 centered = false
+script = ExtResource("3_2nja3")

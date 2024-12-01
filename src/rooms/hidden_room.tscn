@@ -29,7 +29,7 @@ shader_parameter/scan_effect = 0.336
 shader_parameter/distortion_effect = 0.301
 shader_parameter/negative_effect = 0.51
 
-[node name="HiddenRoom" type="Node2D"]
+[node name="HiddenRoom" type="Node2D" groups=["glitch", "level"]]
 
 [node name="RoomInstance" parent="." instance=ExtResource("1_nlo07")]
 
