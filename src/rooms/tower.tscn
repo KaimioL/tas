@@ -90,10 +90,3 @@ position = Vector2(0, 448)
 texture = ExtResource("7_hugsm")
 centered = false
 script = ExtResource("3_7lvi0")
-
-[connection signal="body_entered" from="TileMapLayer/EnergyWall" to="TileMapLayer/EnergyWall" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer/@Area2D@399850" to="TileMapLayer/@Area2D@399850" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer/@Area2D@399851" to="TileMapLayer/@Area2D@399851" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer/@Area2D@399852" to="TileMapLayer/@Area2D@399852" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer/@Area2D@399853" to="TileMapLayer/@Area2D@399853" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMapLayer/@Area2D@399854" to="TileMapLayer/@Area2D@399854" method="_on_body_entered"]

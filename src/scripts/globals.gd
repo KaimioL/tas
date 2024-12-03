@@ -7,7 +7,7 @@ var map_collected = false
 var glitch_collected = false
 var fake_map_collected = false
 var health_collected = false
-var ending = 0
+var ending = 15
 
 signal map_type_changed
 signal got_pickup(pickup_name)
