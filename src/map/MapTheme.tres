@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="MapTheme" load_steps=7 format=3 uid="uid://bc4gm64wkr6jm"]
+
+[ext_resource type="Texture2D" uid="uid://ca5jfkc33rtrq" path="res://assets/minimap/center_texture.png" id="1_ipuxu"]
+[ext_resource type="Texture2D" uid="uid://bu6u3bsklx6l8" path="res://assets/minimap/corner_texture.png" id="3_oo427"]
+[ext_resource type="Texture2D" uid="uid://dl8f3cxo7tj7c" path="res://assets/minimap/corner_passage.png" id="4_cpeyq"]
+[ext_resource type="PackedScene" uid="uid://lc85hublrp11" path="res://src/map/player_location.tscn" id="5_jvhol"]
+[ext_resource type="Script" path="res://addons/MetroidvaniaSystem/Scripts/MapTheme.gd" id="6_ps5fk"]
+[ext_resource type="Texture2D" uid="uid://dnrwpnk8enbp8" path="res://assets/minimap/corner.png" id="7_aw2hl"]
+
+[resource]
+script = ExtResource("6_ps5fk")
+center_texture = ExtResource("1_ipuxu")
+player_location_scene = ExtResource("5_jvhol")
+show_exact_player_location = false
+mapped_display = 3
+separator_mode = 2
+use_shared_borders = false
+default_center_color = Color(0.243569, 0.243569, 0.243569, 1)
+mapped_center_color = Color(0.585062, 0.585062, 0.585062, 1)
+default_border_color = Color(0.128344, 0.128344, 0.128344, 1)
+mapped_border_color = Color(0, 0, 0, 1)
+symbols = Array[Texture2D]([])
+uncollected_item_symbol = -1
+collected_item_symbol = -1
+wall = ExtResource("7_aw2hl")
+passage = ExtResource("4_cpeyq")
+borders = Array[Texture2D]([])
+outer_corner = ExtResource("3_oo427")
+inner_corner = ExtResource("3_oo427")

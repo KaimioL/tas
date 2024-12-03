@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=4 uid="uid://hphpha3olgp8"]
+
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_4xv3r"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tile_set.tres" id="2_84vp2"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_x0f8n"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_s70u6"]
+[ext_resource type="Texture2D" uid="uid://dd0f64sjma5ai" path="res://assets/backgrounds/underground.png" id="5_p4d3j"]
+[ext_resource type="PackedScene" uid="uid://b525sop58wfot" path="res://src/enemies/crawler.tscn" id="6_eh8tk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fi25l"]
+shader = ExtResource("2_x0f8n")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2s35d"]
+shader = ExtResource("2_x0f8n")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[node name="ConnectorRoom" type="Node2D" groups=["level", "underground"]]
+
+[node name="RoomInstance" parent="." instance=ExtResource("1_4xv3r")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_fi25l")
+tile_map_data = PackedByteArray("AAAAAAAAAwALAAIAAAAAAAEAAwALAAIAAAAAAAYAAwALAAIAAAAAAAcAAwALAAIAAAAAAAgAAwALAAIAAAAAAAkAAwAGAAEAAAAAAAoAAwAGAAIAAAAAAAsAAwALAAIAAAAAAAwAAwALAAIAAAAAAA0AAwALAAIAAAAPAAkAAwAKAAAAAAAPAAoAAwAFAAIAAAAPAAsAAwAIAAEAAAAPAAwAAwAIAAEAAAAPAA0AAwAIAAEAAAANAAkAAwAKAAAAAAAOAAkAAwAKAAAAAAAMAAkAAwAIAAAAAAAOAAoAAwAJAAMAAAANAAoAAwAJAAMAAAAMAAoAAwAIAAMAAAAPAAQAAwAIAAMAAAAPAAMAAwAIAAEAAAAPAAIAAwAIAAEAAAAPAAEAAwAIAAEAAAAPAAAAAwAIAAEAAAD//w0AAwAIAAEAAAD//wwAAwAIAAEAAAD//wsAAwAIAAEAAAD//woAAwAIAAEAAAD//wkAAwAIAAEAAAD//wgAAwAIAAEAAAD//wcAAwAIAAEAAAD//wYAAwAIAAEAAAD//wUAAwAIAAEAAAD//wQAAwAIAAEAAAD//wMAAwAIAAEAAAD//wIAAwAIAAEAAAD//wEAAwAIAAEAAAD//wAAAwAIAAEAAAAPAP//AwAIAAAAAAD/////AwAIAAAAAAAAAP//AwALAAAAAAAQAA0AAwALAAIAAAAQAAwAAwALAAIAAAAQAAsAAwALAAIAAAAQAAoAAwALAAIAAAAQAAkAAwALAAAAAAAQAP//AwALAAAAAAAQAAAAAwALAAIAAAAQAAEAAwALAAIAAAAQAAIAAwALAAIAAAAQAAMAAwALAAIAAAAQAAQAAwALAAMAAAAPAA4AAwAIAAMAAAAQAA4AAwALAAMAAAD//w4AAwAIAAMAAAAAAA4AAwALAAMAAAACAAkAAwAKAAAAAAACAAoAAwAJAAMAAAABAAoAAwAJAAMAAAABAAkAAwAKAAAAAAAAAAUAAwALAAIAAAAAAAQAAwALAAIAAAAAAAMAAwALAAIAAAAAAAIAAwALAAIAAAADAAkAAwALAAAAAAADAAoAAwALAAMAAAAMAAsABQADAAEAAAANAAsABQADAAAAAAANAAwABQADAAEAAAAMAAgABQADAAIAAAABAAgABQAAAAIAAAACAAgABQAAAAMAAAA=")
+tile_set = ExtResource("2_84vp2")
+script = ExtResource("4_s70u6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_2s35d")
+texture = ExtResource("5_p4d3j")
+centered = false
+script = ExtResource("4_s70u6")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Crawler" parent="." instance=ExtResource("6_eh8tk")]
+position = Vector2(192, 160)
+rotation = -1.5708
+scale = Vector2(-1, 1)
+direction = -1

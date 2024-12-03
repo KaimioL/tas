@@ -1,0 +1,164 @@
+[gd_scene load_steps=17 format=3 uid="uid://djbpxn11vro5g"]
+
+[ext_resource type="Script" path="res://src/scripts/jumper.gd" id="1_j55w5"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_1eo32"]
+[ext_resource type="Texture2D" uid="uid://b2d045ocpm2a7" path="res://assets/enemies/jumper.png" id="2_pgjgq"]
+[ext_resource type="AudioStream" uid="uid://c7hvr73wtfxrr" path="res://assets/sounds/hitHurt (6).wav" id="3_n472q"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_vybky"]
+[ext_resource type="AudioStream" uid="uid://d2m83kmfyx12n" path="res://assets/sounds/impact.wav" id="6_greex"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_epf16"]
+shader = ExtResource("2_1eo32")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63l14"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o77m3"]
+size = Vector2(12, 10)
+
+[sub_resource type="Animation" id="Animation_2afy1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xrwam"]
+resource_name = "jump"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5fha"]
+_data = {
+"RESET": SubResource("Animation_2afy1"),
+"jump": SubResource("Animation_xrwam")
+}
+
+[sub_resource type="Animation" id="Animation_sm7mh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lcesg"]
+resource_name = "death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_s0ohr"]
+resource_name = "hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ly573"]
+_data = {
+"RESET": SubResource("Animation_sm7mh"),
+"death": SubResource("Animation_lcesg"),
+"hit": SubResource("Animation_s0ohr")
+}
+
+[node name="Jumper" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_j55w5")
+health = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_epf16")
+texture = ExtResource("2_pgjgq")
+hframes = 4
+script = ExtResource("4_vybky")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_63l14")
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_o77m3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5fha")
+}
+
+[node name="JumpCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitTimer" type="Timer" parent="."]
+wait_time = 0.45
+one_shot = true
+
+[node name="HitAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ly573")
+}
+
+[node name="HitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_n472q")
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_greex")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

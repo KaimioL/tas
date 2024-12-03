@@ -1,0 +1,336 @@
+[gd_scene load_steps=30 format=3 uid="uid://2pijfk12oqdo"]
+
+[ext_resource type="Script" path="res://src/scripts/game.gd" id="1_6dmpo"]
+[ext_resource type="PackedScene" uid="uid://ggyc1qonudkw" path="res://src/player.tscn" id="2_ccato"]
+[ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="3_3bab6"]
+[ext_resource type="Script" path="res://src/scripts/map_window.gd" id="4_tv8hf"]
+[ext_resource type="Script" path="res://src/pickup_screen.gd" id="5_wnu3i"]
+[ext_resource type="FontFile" uid="uid://dvnkn0og2y4jv" path="res://assets/fonts/m5x7.ttf" id="6_g53mf"]
+[ext_resource type="FontFile" uid="uid://i14nugpmflby" path="res://assets/fonts/m3x6.ttf" id="7_yeegf"]
+[ext_resource type="AudioStream" uid="uid://lefc6egg4c5q" path="res://assets/sounds/fanfare.wav" id="8_or1di"]
+[ext_resource type="Script" path="res://src/health.gd" id="8_os6yb"]
+[ext_resource type="Texture2D" uid="uid://f8edelrlqsow" path="res://assets/health_box.png" id="9_and8m"]
+[ext_resource type="Texture2D" uid="uid://buxiy4kteqsom" path="res://assets/ending_text.png" id="9_tjeqv"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="9_vouvw"]
+[ext_resource type="AudioStream" uid="uid://w5hmlk5ovdh7" path="res://assets/sounds/ending.wav" id="10_hex2e"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="11_te1m2"]
+[ext_resource type="AudioStream" uid="uid://dixvhbst5yk5l" path="res://assets/sounds/-00.wav" id="14_hwagd"]
+[ext_resource type="AudioStream" uid="uid://b11pcl4efit66" path="res://assets/sounds/-01.wav" id="15_rxkvo"]
+[ext_resource type="AudioStream" uid="uid://ckyic3yvo7fir" path="res://assets/sounds/-02.wav" id="16_q6j0e"]
+[ext_resource type="AudioStream" uid="uid://cuvp7w22lm52x" path="res://assets/sounds/-03.wav" id="17_bk8eo"]
+[ext_resource type="AudioStream" uid="uid://byau6gmwlhqlh" path="res://assets/sounds/-04.wav" id="18_odydx"]
+[ext_resource type="AudioStream" uid="uid://kql5oj88jhd0" path="res://assets/sounds/-05.wav" id="19_cotl1"]
+
+[sub_resource type="Animation" id="Animation_0two4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_blrfc"]
+resource_name = "flash"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyia4"]
+_data = {
+"RESET": SubResource("Animation_0two4"),
+"flash": SubResource("Animation_blrfc")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7sgr"]
+bg_color = Color(0, 0, 0, 0.764706)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3ab5"]
+shader = ExtResource("9_vouvw")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="Animation" id="Animation_1xtxc"]
+resource_name = "death"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.384314, 0, 0.117647, 0.654902), Color(0.384314, 0, 0.117647, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_je36v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5hb"]
+_data = {
+"RESET": SubResource("Animation_je36v"),
+"death": SubResource("Animation_1xtxc")
+}
+
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_73b0r"]
+stream_count = 6
+stream_0/stream = ExtResource("14_hwagd")
+stream_0/volume = -60.0
+stream_1/stream = ExtResource("15_rxkvo")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("16_q6j0e")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("17_bk8eo")
+stream_3/volume = 0.0
+stream_4/stream = ExtResource("18_odydx")
+stream_4/volume = -60.0
+stream_5/stream = ExtResource("19_cotl1")
+stream_5/volume = 0.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_6dmpo")
+
+[node name="Player" parent="." instance=ExtResource("2_ccato")]
+position = Vector2(127, 72)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Map" type="ColorRect" parent="UI"]
+visible = false
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 37.0
+offset_bottom = 37.0
+color = Color(0.277528, 0.277528, 0.277528, 1)
+
+[node name="Map" type="ColorRect" parent="UI/Map"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 33.0
+color = Color(0.0431373, 0.0627451, 0.0862745, 1)
+
+[node name="Minimap" parent="UI/Map/Map" instance=ExtResource("3_3bab6")]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 28.0
+smooth_scroll = false
+
+[node name="ColorRect" type="ColorRect" parent="UI/Map/Map/Minimap"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Map/Map/Minimap/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_fyia4")
+}
+autoplay = "flash"
+
+[node name="MapWindow" type="Panel" parent="UI"]
+visible = false
+offset_right = 256.0
+offset_bottom = 224.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_k7sgr")
+script = ExtResource("4_tv8hf")
+
+[node name="ColorRect" type="ColorRect" parent="UI/MapWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MapWindow/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_fyia4")
+}
+autoplay = "flash"
+
+[node name="Label" type="Label" parent="UI/MapWindow"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = 84.5
+offset_right = 64.5
+offset_bottom = 107.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.314316, 0.314316, 0.314316, 1)
+theme_override_fonts/font = ExtResource("6_g53mf")
+text = "[D] to toggle map modes"
+
+[node name="PickupScreen" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = 4.5
+offset_right = 108.0
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.278431, 0.278431, 0.278431, 1)
+script = ExtResource("5_wnu3i")
+
+[node name="ColorRect" type="ColorRect" parent="UI/PickupScreen"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 215.0
+offset_bottom = 50.0
+color = Color(0.0431373, 0.0627451, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="UI/PickupScreen"]
+layout_mode = 0
+offset_right = 216.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("6_g53mf")
+text = "Temp_name"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="UI/PickupScreen"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 12.0
+offset_right = 65.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("7_yeegf")
+text = "Temp_description"
+
+[node name="Timer" type="Timer" parent="UI/PickupScreen"]
+wait_time = 4.0
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/PickupScreen"]
+stream = ExtResource("8_or1di")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/PickupScreen"]
+visible = false
+position = Vector2(3, 6)
+texture = ExtResource("9_tjeqv")
+centered = false
+
+[node name="Health" type="HBoxContainer" parent="UI"]
+offset_left = 229.0
+offset_top = 8.0
+offset_right = 269.0
+offset_bottom = 48.0
+script = ExtResource("8_os6yb")
+
+[node name="Sprite2D4" type="Sprite2D" parent="UI/Health"]
+visible = false
+material = SubResource("ShaderMaterial_k3ab5")
+position = Vector2(-12, 0)
+texture = ExtResource("9_and8m")
+hframes = 2
+script = ExtResource("11_te1m2")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Health"]
+material = SubResource("ShaderMaterial_k3ab5")
+position = Vector2(-2, 0)
+texture = ExtResource("9_and8m")
+hframes = 2
+script = ExtResource("11_te1m2")
+
+[node name="Sprite2D2" type="Sprite2D" parent="UI/Health"]
+material = SubResource("ShaderMaterial_k3ab5")
+position = Vector2(8, 0)
+texture = ExtResource("9_and8m")
+hframes = 2
+script = ExtResource("11_te1m2")
+
+[node name="Sprite2D3" type="Sprite2D" parent="UI/Health"]
+material = SubResource("ShaderMaterial_k3ab5")
+position = Vector2(18, 0)
+texture = ExtResource("9_and8m")
+hframes = 2
+script = ExtResource("11_te1m2")
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+libraries = {
+"": SubResource("AnimationLibrary_kn5hb")
+}
+
+[node name="EndingMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_hex2e")
+
+[node name="EndingTimer" type="Timer" parent="."]
+wait_time = 3.2
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamSynchronized_73b0r")
+autoplay = true
+
+[connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
+[connection signal="closed" from="UI/PickupScreen" to="." method="_on_pickup_screen_closed"]
+[connection signal="finished" from="UI/PickupScreen/AudioStreamPlayer" to="UI/PickupScreen" method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="EndingTimer" to="." method="_on_ending_timer_timeout"]

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://brff48qhunj3t"]
+
+[ext_resource type="Script" path="res://src/blocks/crumble_block.gd" id="1_bv80y"]
+[ext_resource type="Texture2D" uid="uid://dgh7xq4mi70tv" path="res://assets/blocks/crumble_block.png" id="1_lots8"]
+[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_cankv"]
+[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_8feg1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sj2j5"]
+shader = ExtResource("2_cankv")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ba1p5"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3pqx"]
+size = Vector2(16, 18)
+
+[node name="CrumbleBlock" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_bv80y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sj2j5")
+texture = ExtResource("1_lots8")
+hframes = 5
+script = ExtResource("4_8feg1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ba1p5")
+
+[node name="CrumbleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_y3pqx")
+
+[connection signal="timeout" from="CrumbleTimer" to="." method="_on_crumble_timer_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
