@@ -1,16 +1,19 @@
 [gd_scene load_steps=13 format=3 uid="uid://b525sop58wfot"]
 
 [ext_resource type="Script" path="res://src/enemies/crawler.gd" id="1_fp73x"]
-[ext_resource type="Texture2D" uid="uid://car1dx3kjcvvv" path="res://assets/enemies/crawler.png" id="2_2bugn"]
-[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_tintf"]
+[ext_resource type="Texture2D" uid="uid://car1dx3kjcvvv" path="res://assets/sprites/enemies/crawler.png" id="2_2bugn"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_tintf"]
 [ext_resource type="AudioStream" uid="uid://c7hvr73wtfxrr" path="res://assets/sounds/hitHurt (6).wav" id="3_2oby0"]
-[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_5ih18"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_5ih18"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bhgfa"]
 size = Vector2(12, 10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ino8n"]
 shader = ExtResource("2_tintf")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
 shader_parameter/red_displacement = 0.0
 shader_parameter/green_displacement = 0.0
 shader_parameter/blue_displacement = 0.0
@@ -106,7 +109,7 @@ position = Vector2(-6, -5)
 shape = SubResource("RectangleShape2D_7ni4p")
 
 [node name="HitTimer" type="Timer" parent="."]
-wait_time = 0.45
+wait_time = 0.1
 one_shot = true
 
 [node name="HitAnimation" type="AnimationPlayer" parent="."]

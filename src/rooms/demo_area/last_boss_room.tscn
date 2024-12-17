@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=4 uid="uid://c5fmbtfxleamt"]
+
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_niddc"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tilesets/tile_set.tres" id="2_fydue"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_g8xfv"]
+[ext_resource type="PackedScene" uid="uid://btowd1n5m0126" path="res://src/blocks/moving_platform.tscn" id="3_nkr33"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_y1qot"]
+[ext_resource type="Texture2D" uid="uid://dd0f64sjma5ai" path="res://assets/sprites/backgrounds/underground.png" id="6_tysu4"]
+[ext_resource type="Texture2D" uid="uid://h5qgcaivkcu0" path="res://assets/sprites/misc/item_pedestrial.png" id="7_3l7a0"]
+[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/collectible.tscn" id="8_rf4et"]
+[ext_resource type="Texture2D" uid="uid://cgy4ngofkkfvm" path="res://assets/sprites/pickups/energy_box.png" id="9_ulpfr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0rxpk"]
+shader = ExtResource("2_g8xfv")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_06e15"]
+shader = ExtResource("2_g8xfv")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mdxj3"]
+size = Vector2(14, 16)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pmp5a"]
+shader = ExtResource("2_g8xfv")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[node name="LastBossRoom" type="Node2D" groups=["level", "underground"]]
+
+[node name="RoomInstance" parent="." instance=ExtResource("1_niddc")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_0rxpk")
+tile_map_data = PackedByteArray("AAAAAP//AwAKAAAAAAAAAAAAAwAGAAIAAAAAAA0AAwALAAIAAAD/////AwAIAAAAAAD//wAAAwAIAAEAAAD//wEAAwAIAAEAAAD//wIAAwAIAAEAAAD//wMAAwAIAAEAAAD//wQAAwAIAAEAAAD//wUAAwAIAAMAAAD//w0AAwAIAAEAAAAQAAAAAwALAAIAAAAPAAAAAwAFAAIAAAAOAAAAAwAJAAMAAAANAAAAAwAJAAMAAAAMAAAAAwAJAAMAAAALAAAAAwAJAAMAAAAKAAAAAwAJAAMAAAAJAAAAAwAJAAMAAAAIAAAAAwAJAAMAAAAHAAAAAwAJAAMAAAAGAAAAAwAJAAMAAAAFAAAAAwAJAAMAAAAEAAAAAwAJAAMAAAADAAAAAwAJAAMAAAACAAAAAwAJAAMAAAABAAAAAwAJAAMAAAABAP//AwAKAAAAAAACAP//AwAKAAAAAAADAP//AwAKAAAAAAAEAP//AwAKAAAAAAAFAP//AwAKAAAAAAAGAP//AwAKAAAAAAAHAP//AwAKAAAAAAAIAP//AwAKAAAAAAAJAP//AwAKAAAAAAAKAP//AwAKAAAAAAALAP//AwAKAAAAAAAMAP//AwAKAAAAAAANAP//AwAKAAAAAAAOAP//AwAKAAAAAAAPAP//AwAKAAAAAAAQAP//AwALAAAAAAAQAA0AAwALAAIAAAAQAAwAAwALAAIAAAAQAAsAAwALAAIAAAAQAAoAAwALAAIAAAAQAAkAAwALAAIAAAAQAAgAAwALAAIAAAAQAAcAAwALAAIAAAAQAAYAAwALAAIAAAAQAAUAAwALAAIAAAAQAAQAAwALAAIAAAAQAAMAAwALAAIAAAAQAAIAAwALAAIAAAAQAAEAAwALAAIAAAAPAA0AAwAIAAEAAAAPAAwAAwAIAAEAAAAPAAsAAwAIAAEAAAAPAAoAAwAIAAEAAAAPAAkAAwAIAAEAAAAPAAgAAwAIAAEAAAAPAAcAAwAIAAEAAAAPAAYAAwAIAAIAAAAPAAUAAwAIAAEAAAAPAAQAAwAIAAEAAAAPAAMAAwAIAAEAAAAPAAIAAwAIAAEAAAAPAAEAAwAIAAEAAAAQAA4AAwALAAMAAAAPAA4AAwAIAAMAAAD//w4AAwAIAAMAAAAAAA4AAwALAAMAAAAAAAEAAwALAAIAAAAAAAIAAwALAAIAAAAAAAMAAwALAAIAAAAAAAUAAwALAAMAAAAAAAQAAwALAAIAAAD//wwAAwAIAAEAAAAAAAwAAwALAAIAAAAAAAsAAwALAAIAAAD//wsAAwAIAAEAAAAAAAoAAwAGAAIAAAD//woAAwAIAAEAAAD//wkAAwAIAAAAAAAAAAkAAwAKAAAAAAABAAkAAwAKAAAAAAACAAkAAwALAAAAAAACAAoAAwALAAMAAAABAAoAAwAJAAMAAAAOAAYAAwACAAMAAAANAAYAAwABAAMAAAAJAAEABQADAAAAAAAJAAIABQADAAEAAAAKAAEABQADAAEAAAAOAAEABQADAAEAAAACAAEABQADAAEAAAABAAgABQADAAIAAAACAAgABQAAAAMAAAANAAcABQADAAEAAAA=")
+tile_set = ExtResource("2_fydue")
+script = ExtResource("4_y1qot")
+
+[node name="MovingPlatform" parent="." instance=ExtResource("3_nkr33")]
+position = Vector2(95, 152)
+offset = Vector2(110, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_06e15")
+texture = ExtResource("6_tysu4")
+centered = false
+script = ExtResource("4_y1qot")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(230, 88)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_mdxj3")
+
+[node name="ItemPedestrial" type="Sprite2D" parent="StaticBody2D"]
+material = SubResource("ShaderMaterial_pmp5a")
+texture = ExtResource("7_3l7a0")
+script = ExtResource("4_y1qot")
+
+[node name="Collectible" parent="." instance=ExtResource("8_rf4et")]
+position = Vector2(230, 75)
+item_name = "health"
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible"]
+texture = ExtResource("9_ulpfr")

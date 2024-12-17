@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://wl5667kpe71x"]
 
-[ext_resource type="Texture2D" uid="uid://dkfaqb7ksoy58" path="res://assets/energy_wall.png" id="1_8a03m"]
+[ext_resource type="Texture2D" uid="uid://dkfaqb7ksoy58" path="res://assets/sprites/blocks/energy_wall.png" id="1_8a03m"]
 [ext_resource type="Script" path="res://src/blocks/energy_wall.gd" id="1_ws4r3"]
-[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_jujkt"]
-[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_v2pmu"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_jujkt"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_v2pmu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s5cvb"]
 shader = ExtResource("2_jujkt")

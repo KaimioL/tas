@@ -10,11 +10,11 @@ var collectibles: int:
 
 var events: Array[String]
 var starting_position
-
-var starting_map = "space_station_3.tscn"
+var starting_map = "surface/surface1.tscn"
 var custom_run = false
 
 signal pickup_screen_closed
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var player_pos = $Player.position
@@ -46,18 +46,6 @@ func _ready() -> void:
 	
 	load_room(starting_map)
 	add_module("RoomTransitions.gd")
-#
-#func _unhandled_input(event: InputEvent) -> void:
-	#if event.is_action_pressed("map"):
-		#print($UI/MapWindow.visible)
-		#if not $UI/MapWindow.visible:
-			#print("aaaa")
-			#$UI/MapWindow.hide()
-			#$Player.paused = false
-		#else:
-			#$UI/MapWindow.show()
-			#$Player.paused = true
-			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -114,9 +102,6 @@ func control_music():
 			$Music.stream.set_sync_stream_volume(3, -60)
 			$Music.stream.set_sync_stream_volume(4, -60)
 			$Music.stream.set_sync_stream_volume(5, -60)
-			
-		
-	
 
 func _on_got_pickup(pickup_name: String) -> void:
 	$Player.control_locked = true

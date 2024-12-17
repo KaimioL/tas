@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://x0rtbtakmw12"]
+
+[ext_resource type="Script" path="res://src/scripts/door_boost.gd" id="1_vwxi5"]
+
+[node name="DoorBoos" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vwxi5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

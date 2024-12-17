@@ -1,14 +1,17 @@
 [gd_scene load_steps=17 format=3 uid="uid://djbpxn11vro5g"]
 
-[ext_resource type="Script" path="res://src/scripts/jumper.gd" id="1_j55w5"]
-[ext_resource type="Shader" path="res://src/cartridge_tilt.gdshader" id="2_1eo32"]
-[ext_resource type="Texture2D" uid="uid://b2d045ocpm2a7" path="res://assets/enemies/jumper.png" id="2_pgjgq"]
+[ext_resource type="Script" path="res://src/enemies/jumper.gd" id="1_j55w5"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_1eo32"]
+[ext_resource type="Texture2D" uid="uid://b2d045ocpm2a7" path="res://assets/sprites/enemies/jumper.png" id="2_pgjgq"]
 [ext_resource type="AudioStream" uid="uid://c7hvr73wtfxrr" path="res://assets/sounds/hitHurt (6).wav" id="3_n472q"]
-[ext_resource type="Script" path="res://src/tile_map_layer.gd" id="4_vybky"]
-[ext_resource type="AudioStream" uid="uid://d2m83kmfyx12n" path="res://assets/sounds/impact.wav" id="6_greex"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_vybky"]
+[ext_resource type="AudioStream" uid="uid://d2m83kmfyx12n" path="res://assets/sounds/metroid_impact.wav" id="6_greex"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epf16"]
 shader = ExtResource("2_1eo32")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
 shader_parameter/red_displacement = 0.0
 shader_parameter/green_displacement = 0.0
 shader_parameter/blue_displacement = 0.0
@@ -147,7 +150,7 @@ libraries = {
 one_shot = true
 
 [node name="HitTimer" type="Timer" parent="."]
-wait_time = 0.45
+wait_time = 0.1
 one_shot = true
 
 [node name="HitAnimation" type="AnimationPlayer" parent="."]

@@ -1,0 +1,117 @@
+[gd_scene load_steps=17 format=4 uid="uid://bhywbncos6v2t"]
+
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="1_36c74"]
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_oxwno"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tilesets/tile_set.tres" id="2_0fj0y"]
+[ext_resource type="Texture2D" uid="uid://b7mrhd0lfhknn" path="res://assets/sprites/backgrounds/space_station_bg.png" id="3_5j07w"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="3_44y81"]
+[ext_resource type="Texture2D" uid="uid://clwrm7cpcqxv1" path="res://assets/sprites/misc/empty_monitor.png" id="4_x5hkw"]
+[ext_resource type="Texture2D" uid="uid://dlpydcrgjpvop" path="res://assets/sprites/misc/monitor_1.png" id="5_84ynv"]
+[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/collectible.tscn" id="8_ituoe"]
+[ext_resource type="Texture2D" uid="uid://1q42wr25v7lo" path="res://assets/sprites/pickups/hover_pickup.png" id="9_bfhil"]
+[ext_resource type="Texture2D" uid="uid://h5qgcaivkcu0" path="res://assets/sprites/misc/item_pedestrial.png" id="10_yqvae"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48c4a"]
+shader = ExtResource("1_36c74")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wpcuj"]
+shader = ExtResource("1_36c74")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g51yi"]
+shader = ExtResource("1_36c74")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5ing"]
+shader = ExtResource("1_36c74")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e76mg"]
+shader = ExtResource("1_36c74")
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae2ec"]
+size = Vector2(14, 16)
+
+[node name="SpaceStation2" type="Node2D" groups=["level", "space_station"]]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_48c4a")
+tile_map_data = PackedByteArray("AAD/////AgAIAAAAAAAQAP//AgALAAAAAAAQAAAAAgALAAIAAAAAAAAAAgALAAIAAAD//wAAAgAIAAEAAAAQAA0AAgALAAIAAAAQAAwAAgALAAIAAAAQAAsAAgALAAIAAAAQAAoAAgALAAIAAAAQAAkAAgALAAIAAAAQAAgAAgALAAIAAAAQAAcAAgALAAIAAAAQAAYAAgALAAIAAAAQAAUAAgALAAIAAAAQAAQAAgALAAIAAAAQAAMAAgALAAIAAAAQAAIAAgALAAIAAAAQAAEAAgALAAIAAAAAAP//AgALAAAAAAAAAA0AAgAGAAEAAAABAA0AAgAKAAAAAAACAA0AAgAKAAAAAAADAA0AAgAKAAAAAAAEAA0AAgAKAAAAAAAFAA0AAgAKAAAAAAAGAA0AAgAFAAEAAAAHAA0AAgAJAAIAAAAIAA0AAgAJAAIAAAAJAA0AAgAGAAEAAAAKAA0AAgAKAAAAAAALAA0AAgAKAAAAAAAMAA0AAgAKAAAAAAANAA0AAgAKAAAAAAAOAA0AAgAKAAAAAAAPAA0AAgAFAAEAAAAQAA4AAgALAAMAAAAPAA4AAgAJAAMAAAAOAA4AAgAJAAMAAAANAA4AAgAJAAMAAAAMAA4AAgAJAAMAAAALAA4AAgAJAAMAAAAKAA4AAgAJAAMAAAAJAA4AAgAJAAMAAAAIAA4AAgAJAAMAAAAHAA4AAgAJAAMAAAAGAA4AAgAJAAMAAAAFAA4AAgAJAAMAAAAEAA4AAgAJAAMAAAADAA4AAgAJAAMAAAACAA4AAgAJAAMAAAABAA4AAgAJAAMAAAAAAA4AAgAJAAMAAAD//w4AAgAIAAMAAAAPAAwAAgAIAAEAAAAPAAsAAgAIAAEAAAAPAAoAAgAIAAEAAAAPAAkAAgAIAAEAAAAPAAgAAgAIAAEAAAAPAAcAAgAIAAIAAAAPAAYAAgAIAAEAAAAPAAUAAgAFAAIAAAAPAAQAAgAFAAEAAAAPAAMAAgAIAAEAAAAPAAIAAgAIAAIAAAAPAAEAAgAIAAEAAAAPAAAAAgAIAAEAAAAPAP//AgAIAAAAAAAAAAwAAgALAAIAAAAAAAsAAgALAAIAAAAAAAoAAgALAAIAAAAAAAkAAgALAAIAAAAAAAgAAgALAAIAAAAAAAcAAgALAAEAAAAAAAYAAgALAAIAAAAAAAUAAgAGAAIAAAAAAAQAAgAGAAEAAAAAAAMAAgALAAIAAAAAAAIAAgALAAEAAAAAAAEAAgALAAIAAAD//wEAAgAIAAEAAAD//wIAAgAIAAEAAAD//wMAAgAIAAEAAAD//wQAAgAIAAEAAAD//wUAAgAIAAEAAAD//wYAAgAIAAEAAAD//wcAAgAIAAEAAAD//wgAAgAIAAEAAAD//wkAAgAIAAEAAAD//woAAgAIAAEAAAD//wsAAgAIAAEAAAD//wwAAgAIAAEAAAD//w0AAgAIAAEAAAAGAAwAAgAIAAEAAAAGAAsAAgAIAAEAAAAGAAoAAgAIAAAAAAAHAAoAAgAKAAAAAAAIAAoAAgAKAAAAAAAJAAoAAgALAAAAAAAJAAsAAgALAAIAAAAJAAwAAgALAAIAAAAIAAwAAgAJAAIAAAAHAAwAAgAJAAIAAAAHAAsAAgAJAAIAAAAIAAsAAgAJAAIAAAAEAAcAAgADAAMAAAADAAcAAgACAAMAAAACAAcAAgACAAMAAAABAAcAAgACAAMAAAALAAcAAgABAAMAAAAMAAcAAgACAAMAAAANAAcAAgACAAMAAAAOAAcAAgACAAMAAAAGAAQAAgABAAMAAAAHAAQAAgACAAMAAAAIAAQAAgACAAMAAAAJAAQAAgADAAMAAAADAAIAAgADAAMAAAACAAIAAgACAAMAAAABAAIAAgACAAMAAAAMAAIAAgABAAMAAAANAAIAAgACAAMAAAAOAAIAAgACAAMAAAAOAAQABQABAAIAAFAOAAUABQACAAIAAFABAAQABQACAAIAAGABAAUABQABAAIAAGA=")
+tile_set = ExtResource("2_0fj0y")
+script = ExtResource("3_44y81")
+
+[node name="RoomInstance" parent="." instance=ExtResource("1_oxwno")]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["level"]]
+z_index = -1
+material = SubResource("ShaderMaterial_wpcuj")
+texture = ExtResource("3_5j07w")
+centered = false
+script = ExtResource("3_44y81")
+
+[node name="EmptyMonitor" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_g51yi")
+position = Vector2(204, 176)
+texture = ExtResource("4_x5hkw")
+script = ExtResource("3_44y81")
+
+[node name="Monitor1" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_f5ing")
+position = Vector2(51, 176)
+texture = ExtResource("5_84ynv")
+script = ExtResource("3_44y81")
+
+[node name="Collectible" parent="." instance=ExtResource("8_ituoe")]
+position = Vector2(128, 135)
+item_name = "fake_map"
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible"]
+texture = ExtResource("9_bfhil")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(128, 152)
+
+[node name="ItemPedestrial" type="Sprite2D" parent="StaticBody2D"]
+material = SubResource("ShaderMaterial_e76mg")
+texture = ExtResource("10_yqvae")
+script = ExtResource("3_44y81")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_ae2ec")

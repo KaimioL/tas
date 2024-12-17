@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://2b8yaub7aewh"]
+
+[ext_resource type="PackedScene" uid="uid://2pijfk12oqdo" path="res://src/game.tscn" id="1_x2hu2"]
+[ext_resource type="Shader" path="res://src/shaders/crt.gdshader" id="2_o4mt5"]
+[ext_resource type="PackedScene" uid="uid://cn74tfmybnhix" path="res://addons/flowerwall_postprocess/scenes/flowerwall_crt_config_ui.tscn" id="3_805eb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_845xc"]
+shader = ExtResource("2_o4mt5")
+shader_parameter/crt_curve = 0.0
+shader_parameter/crt_scan_line_color = 0.0
+shader_parameter/aperture_grille_rate = 0.225
+shader_parameter/rf_switch_esque_blur = 1.0
+shader_parameter/white_noise_rate = 0.0
+
+[node name="Display" type="Node2D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(1024, 896)
+size_2d_override = Vector2i(256, 224)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Game" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_x2hu2")]
+
+[node name="CRTShader" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_845xc")
+offset_right = 1024.0
+offset_bottom = 896.0
+
+[node name="FlowerwallCrtConfigUi" parent="." instance=ExtResource("3_805eb")]
+visible = false
+offset_left = 428.0
+offset_top = 20.0
+offset_right = 1004.0
+offset_bottom = 775.0

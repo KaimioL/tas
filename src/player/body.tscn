@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://y5p6f4qbpy2o"]
+
+[ext_resource type="Texture2D" uid="uid://dr00irmqo360l" path="res://assets/sprites/player/legs.png" id="1_6e136"]
+[ext_resource type="Texture2D" uid="uid://5vs6f5gakp4q" path="res://assets/sprites/player/torso_without_head.png" id="2_uhwm7"]
+
+[node name="Body" type="Area2D"]
+top_level = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 7)
+texture = ExtResource("1_6e136")
+hframes = 8
+vframes = 3
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("2_uhwm7")

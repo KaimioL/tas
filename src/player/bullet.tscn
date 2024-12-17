@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy46scnxik21h"]
+
+[ext_resource type="Script" path="res://src/player/bullet.gd" id="1_krq8f"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_1mpct"]
+[ext_resource type="Texture2D" uid="uid://d2d5hakdi6s1e" path="res://assets/sprites/player/samus_bullet.png" id="3_h3i5i"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_sw031"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqe8u"]
+size = Vector2(6, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cexy6"]
+shader = ExtResource("2_1mpct")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mvwh3"]
+size = Vector2(16, 16)
+
+[node name="Bullet" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 5
+script = ExtResource("1_krq8f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kqe8u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cexy6")
+texture = ExtResource("3_h3i5i")
+hframes = 8
+script = ExtResource("4_sw031")
+
+[node name="FrameTimer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("RectangleShape2D_mvwh3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="FrameTimer" to="." method="_on_frame_timer_timeout"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]

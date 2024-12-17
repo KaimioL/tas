@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=4 uid="uid://cgl5msojxdlnt"]
+
+[ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_f2g12"]
+[ext_resource type="Script" path="res://src/rooms/demo_area/right_connector.gd" id="1_jjjov"]
+[ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tilesets/tile_set.tres" id="2_0e4h2"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_k3sda"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_dywbl"]
+[ext_resource type="TileSet" uid="uid://cmtmexxct5108" path="res://src/tilesets/bts_tileset.tres" id="6_fu0rq"]
+[ext_resource type="PackedScene" uid="uid://djbpxn11vro5g" path="res://src/enemies/jumper.tscn" id="6_msrx2"]
+[ext_resource type="Script" path="res://src/scripts/bts_layer.gd" id="7_vuk0o"]
+[ext_resource type="Texture2D" uid="uid://cnc23d338obqm" path="res://assets/sprites/misc/light.png" id="8_362kl"]
+[ext_resource type="Texture2D" uid="uid://dd0f64sjma5ai" path="res://assets/sprites/backgrounds/underground.png" id="9_qgf46"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vvmo"]
+shader = ExtResource("2_k3sda")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_46hsb"]
+shader = ExtResource("2_k3sda")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_21rrl"]
+shader = ExtResource("2_k3sda")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
+
+[node name="RightConnector" type="Node2D" groups=["level", "underground"]]
+script = ExtResource("1_jjjov")
+
+[node name="RoomInstance" parent="." groups=["level"] instance=ExtResource("1_f2g12")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+material = SubResource("ShaderMaterial_2vvmo")
+tile_map_data = PackedByteArray("AAAPAA0AAwAJAAIAAAAOAA0AAwAJAAIAAAANAA0AAwAJAAIAAAAMAA0AAwAJAAIAAAALAA0AAwAJAAIAAAAKAA0AAwAJAAIAAAAJAA0AAwAJAAIAAAAIAA0AAwAJAAIAAAAHAA0AAwAJAAIAAAAGAA0AAwAJAAIAAAAFAA0AAwAJAAIAAAAEAA0AAwAJAAIAAAADAA0AAwAJAAIAAAACAA0AAwAJAAIAAAABAA0AAwAJAAIAAAAAAA0AAwAJAAIAAAD//w4AAwAIAAMAAAAAAA4AAwAJAAMAAAABAA4AAwAJAAMAAAACAA4AAwAJAAMAAAADAA4AAwAJAAMAAAAEAA4AAwAJAAMAAAAFAA4AAwAJAAMAAAAGAA4AAwAJAAMAAAAHAA4AAwAJAAMAAAAIAA4AAwAJAAMAAAAJAA4AAwAJAAMAAAAKAA4AAwAJAAMAAAALAA4AAwAJAAMAAAAMAA4AAwAJAAMAAAANAA4AAwAJAAMAAAAOAA4AAwAJAAMAAAAPAA4AAwAJAAMAAAAQAA4AAwALAAMAAAD//wwAAwAIAAAAAAD//w0AAwAIAAEAAAAQAAwAAwALAAIAAAAPAAwAAwAJAAIAAAAOAAwAAwAJAAIAAAANAAwAAwAJAAIAAAAMAAwAAwAFAAEAAAALAAwAAwAKAAAAAAAKAAwAAwAKAAAAAAAJAAwAAwAKAAAAAAAIAAwAAwAKAAAAAAAHAAwAAwAKAAAAAAAGAAwAAwAKAAAAAAAFAAwAAwAKAAAAAAAEAAwAAwAKAAAAAAADAAwAAwAKAAAAAAACAAwAAwAKAAAAAAABAAwAAwAKAAAAAAAAAAwAAwAKAAAAAAAQAP//AwALAAAAAAAQAAAAAwALAAIAAAAQAAEAAwALAAIAAAAQAAIAAwALAAIAAAAQAAMAAwALAAIAAAAQAAQAAwALAAIAAAAQAAUAAwALAAIAAAAQAAYAAwALAAIAAAAQAAcAAwALAAIAAAAQAAgAAwALAAIAAAAQAAkAAwALAAIAAAAQAAoAAwALAAIAAAAQAAsAAwALAAIAAAAQAA0AAwALAAIAAAAPAAsAAwAJAAIAAAAPAAoAAwAJAAIAAAAPAAkAAwAFAAEAAAAPAAgAAwAIAAEAAAAPAAcAAwAIAAEAAAAPAAYAAwAIAAEAAAAPAAUAAwAIAAEAAAAPAAQAAwAIAAEAAAAPAAMAAwAIAAEAAAAPAAEAAwAIAAEAAAAPAAAAAwAFAAIAAAAPAP//AwAKAAAAAAAKAP//AwAKAAAAAAALAP//AwAKAAAAAAAMAP//AwAKAAAAAAANAP//AwAKAAAAAAAOAP//AwAKAAAAAAANAAAAAwAJAAMAAAAKAAAAAwAJAAMAAAALAAAAAwAJAAMAAAAMAAAAAwAJAAMAAAAOAAAAAwAJAAMAAAAGAAAAAwAJAAMAAAAGAP//AwAKAAAAAAD/////AwAIAAAAAAAAAP//AwAKAAAAAAABAP//AwAKAAAAAAACAP//AwAKAAAAAAADAP//AwAKAAAAAAAEAP//AwAKAAAAAAAFAP//AwAKAAAAAAD//wAAAwAIAAEAAAAAAAAAAwAJAAIAAAABAAAAAwAGAAIAAAACAAAAAwAJAAMAAAADAAAAAwAJAAMAAAAEAAAAAwAJAAMAAAAFAAAAAwAJAAMAAAD//wgAAwAIAAMAAAD//wcAAwAIAAEAAAD//wYAAwAIAAEAAAD//wUAAwAIAAEAAAD//wQAAwAIAAEAAAD//wMAAwAIAAEAAAD//wIAAwAIAAEAAAD//wEAAwAIAAEAAAAAAAEAAwAJAAIAAAAAAAIAAwAJAAIAAAAAAAMAAwAJAAIAAAAAAAQAAwAJAAIAAAAAAAUAAwAJAAIAAAAAAAYAAwAGAAIAAAAAAAcAAwALAAIAAAAAAAgAAwALAAMAAAAPAAIAAwAIAAEAAAAJAP//AwAKAAAAAAAJAAAAAwAJAAMAAAAIAAAAAwAJAAMAAAAHAAAAAwAJAAMAAAAHAP//AwAKAAAAAAAIAP//AwAKAAAAAAAHAAYAAwAFAAAAAAAEAAYAAwACAAMAAAADAAYAAwACAAMAAAACAAYAAwACAAMAAAABAAYAAwAGAAMAAAABAAUAAwALAAIAAAABAAQAAwALAAIAAAABAAMAAwALAAIAAAABAAIAAwALAAIAAAABAAEAAwALAAIAAAAHAAcAAwAIAAEAAAAHAAgAAwAFAAMAAAAGAAgAAwABAAMAAAANAAkAAwAKAAAAAAANAAoAAwAJAAIAAAANAAsAAwAJAAIAAAAOAAsAAwAJAAIAAAAOAAoAAwAJAAIAAAAOAAkAAwAKAAAAAAAIAAYAAwALAAAAAAAGAAYAAwACAAMAAAAFAAYAAwACAAMAAAAMAAkAAwAIAAAAAAAMAAoAAwAIAAEAAAAMAAsAAwAIAAEAAAAJAAgAAwADAAMAAAAIAAgAAwAGAAMAAAAIAAcAAwALAAIAAAAAAAkAAQAAAAAAAgAAAAoAAQAAAAAAAgAAAAsAAQAAAAAAAgAKAAsABQAAAAMAAAAJAAcABQAAAAMAAAAFAAsABQADAAIAAAAOAAgABQADAAIAAAANAAEABQADAAAAAAANAAIABQADAAEAAAAMAAEABQADAAEAAAADAAEABQADAAEAAAA=")
+tile_set = ExtResource("2_0e4h2")
+script = ExtResource("4_dywbl")
+
+[node name="BTSLayer" type="TileMapLayer" parent="." node_paths=PackedStringArray("layer_1")]
+tile_map_data = PackedByteArray("AAAGAAYAAAAAAAAAAQAFAAYAAAAAAAAAAQAEAAYAAAAAAAAAAQADAAYAAAAAAAAAAQACAAYAAAAAAAAAAQA=")
+tile_set = ExtResource("6_fu0rq")
+script = ExtResource("7_vuk0o")
+layer_1 = NodePath("../TileMapLayer")
+
+[node name="Jumper" parent="." instance=ExtResource("6_msrx2")]
+position = Vector2(219, 136)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+material = SubResource("ShaderMaterial_46hsb")
+texture = ExtResource("9_qgf46")
+centered = false
+script = ExtResource("4_dywbl")
+
+[node name="Light" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_21rrl")
+position = Vector2(207, 180)
+texture = ExtResource("8_362kl")
+hframes = 2
+script = ExtResource("4_dywbl")
+
+[node name="Light2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_21rrl")
+position = Vector2(220, 180)
+texture = ExtResource("8_362kl")
+hframes = 2
+script = ExtResource("4_dywbl")
+
+[node name="Light3" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_21rrl")
+position = Vector2(233, 180)
+texture = ExtResource("8_362kl")
+hframes = 2
+script = ExtResource("4_dywbl")
+
+[node name="Light4" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_21rrl")
+position = Vector2(220, 167)
+texture = ExtResource("8_362kl")
+hframes = 2
+script = ExtResource("4_dywbl")

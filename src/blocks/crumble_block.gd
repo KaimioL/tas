@@ -1,30 +1,53 @@
 extends StaticBody2D
 
+var alive = true
+var frame = 0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if $CrumbleTimer.time_left < 0.4:
-		$Sprite2D.frame = 1
-	if $CrumbleTimer.time_left < 0.3:
-		$Sprite2D.frame = 2
-	if $CrumbleTimer.time_left < 0.2:
-		$Sprite2D.frame = 3
-	if $CrumbleTimer.time_left < 0.1:
-		$Sprite2D.frame = 4
-	if $CrumbleTimer.time_left == 0:
-		$Sprite2D.frame = 0
+	$Sprite2D.frame = frame
+	if frame > 1:
+		$CollisionShape2D.disabled = true
+	else:
+		$CollisionShape2D.disabled = false
+		
+	if $RayCast2D.is_colliding() or $RayCast2D2.is_colliding() or $RayCast2D3.is_colliding():
+		$RayCast2D.enabled = false
+		$RayCast2D2.enabled = false
+		$RayCast2D3.enabled = false
+		
+		
+		$CrumbleTimer.start()
+		$Sprite2D.show()
+		get_parent().remove_graphics_tile(global_position)
 
+func _ready() -> void:
+	$Sprite2D.hide()
 
 func _on_crumble_timer_timeout() -> void:
+	if alive:
+		frame += 1
+		if frame == $Sprite2D.hframes - 1:
+			$CrumbleTimer.stop()
+			die()
+			alive = false
+	else:
+		frame -= 1
+		if frame == 0:
+			$CrumbleTimer.stop()
+			alive = true
+			$RayCast2D.enabled = true
+			$RayCast2D2.enabled = true
+			$RayCast2D3.enabled = true
+			
+	
+func die():
+	alive = false
 	$Sprite2D.hide()
-	$CollisionShape2D.disabled = true
 	$Cooldown.start()
 
-
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
-		$CrumbleTimer.start()
 
 
 func _on_cooldown_timeout() -> void:
 	$Sprite2D.show()
-	$CollisionShape2D.disabled = false
+	$CrumbleTimer.start()

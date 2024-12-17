@@ -5,6 +5,7 @@
 class_name MetroidvaniaSystem extends Node
 
 const DEFAULT_SYMBOL = -99
+const MAP_SIZES = [Vector2i(4, 6), Vector2i(1, 1), Vector2i(1, 1)]
 enum { DISPLAY_CENTER = 1, DISPLAY_OUTLINE = 2, DISPLAY_BORDERS = 4, DISPLAY_SYMBOLS = 8 }
 
 const MetSysSettings = preload("res://addons/MetroidvaniaSystem/Scripts/Settings.gd")
@@ -31,7 +32,7 @@ var save_data: MetSysSaveData
 var last_player_position := Vector3i.MAX
 var exact_player_position: Vector2
 var current_room: RoomInstance
-var map_size: Vector2i = Vector2i(4, 6)
+var map_size = MAP_SIZES[0]
 ## The current layer, for the purpose of visiting with [method set_player_position] among other things. MetSys does not modify it automatically in any way. Changing it emits [signal cell_changed] signal.
 var current_layer: int:
 	set(layer):
@@ -122,6 +123,7 @@ func set_save_data(data := {}):
 	save_data.set_data(data)
 
 func visit_cell(coords: Vector3i):
+	map_size = MAP_SIZES[coords.z]
 	coords = Vector3i(posmod(coords.x,map_size.x), posmod(coords.y,map_size.y), coords.z)
 	save_data.explore_cell(coords)
 	save_data.explore_cell(Vector3i(good_to_bad_projection(Vector2i(coords.x, coords.y)).x, good_to_bad_projection(Vector2i(coords.x, coords.y)).y, 1))

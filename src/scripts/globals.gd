@@ -7,7 +7,9 @@ var map_collected = false
 var glitch_collected = false
 var fake_map_collected = false
 var health_collected = false
-var ending = 15
+var booster_collected = false
+var paused = false
+var ending = 0
 
 signal map_type_changed
 signal got_pickup(pickup_name)
@@ -17,7 +19,6 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if event.keycode == KEY_D:
 				if map_collected:
-					# D toggles position tracking (delta vector).
 					bad_map = not bad_map
 					map_type_changed.emit()
 
@@ -51,5 +52,8 @@ func is_pickup_collected(pickup_name):
 			return true
 	if pickup_name == "fake_map":
 		if fake_map_collected == true:
+			return true
+	if pickup_name == "health":
+		if health_collected == true:
 			return true
 	return false
