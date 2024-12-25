@@ -10,7 +10,7 @@ var collectibles: int:
 
 var events: Array[String]
 var starting_position
-var starting_map = "surface/surface1.tscn"
+var starting_map = "surface/surface3.tscn"
 var custom_run = false
 
 signal pickup_screen_closed
@@ -49,7 +49,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	control_music()
+	pass
+	#control_music()
 func init_room():
 	MetSys.get_current_room_instance().adjust_camera_limits($Player/Camera2D)
 

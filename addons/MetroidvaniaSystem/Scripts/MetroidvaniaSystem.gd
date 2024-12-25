@@ -5,7 +5,7 @@
 class_name MetroidvaniaSystem extends Node
 
 const DEFAULT_SYMBOL = -99
-const MAP_SIZES = [Vector2i(4, 6), Vector2i(1, 1), Vector2i(1, 1)]
+const MAP_SIZES = [Vector2i(16, 32), Vector2i(1, 1), Vector2i(1, 1)]
 enum { DISPLAY_CENTER = 1, DISPLAY_OUTLINE = 2, DISPLAY_BORDERS = 4, DISPLAY_SYMBOLS = 8 }
 
 const MetSysSettings = preload("res://addons/MetroidvaniaSystem/Scripts/Settings.gd")

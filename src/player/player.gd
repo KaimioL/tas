@@ -3,17 +3,18 @@ class_name Player
 
 const SPEED = 100.0
 const SLIDE_SPEED = 250
-const JUMP_VELOCITY = -330.0
+const JUMP_VELOCITY = -300.0
 const BALL_JUMP_VELOCITY = -180.0
 const AIR_FRICTION = 5
 const GROUND_FRICTION = 10
-const DAMAGE_BOOST = Vector2(-250, -250)
+const DAMAGE_BOOST = Vector2(-100, -250)
 const BOOST_SPEED = 180
 const BOOST_TIME = 0.8
 const ACC = 10
+const GRAVITY = 870
+const MAX_VEL_Y = 1000
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var on_ground_last_frame = false
 var coyote = false
 var can_jump = true
@@ -34,6 +35,7 @@ var boost_time_left = 0
 var is_ball = false
 var empty_body = null
 var shot_charged = false
+var d_boost_velocity = 0
 
 @export var control_locked = false
 @onready var coyote_time = $CoyoteTime
@@ -84,11 +86,13 @@ func _physics_process(delta):
 
 	# Add the gravity.
 	if not is_on_floor():
-		if (in_wall or hover) and velocity.y + gravity * delta > 0:
+		if (in_wall or hover) and velocity.y + GRAVITY * delta > 0:
 			velocity.y = 0
 		elif velocity.y < max_velocity:
-			velocity.y += gravity * delta
-	
+			velocity.y += GRAVITY * delta
+		if velocity.y > MAX_VEL_Y:
+			velocity.y = MAX_VEL_Y
+
 	if not is_on_floor_check() and on_ground_last_frame:
 		coyote_time.start()
 		coyote = true
@@ -109,7 +113,7 @@ func _physics_process(delta):
 	
 	# Stop jump velocity when jump not pressed
 	if !Input.is_action_pressed("jump") and velocity.y < 0:
-		velocity.y += 1000 * delta
+		velocity.y += 2000 * delta
 	var h_direction = Vector2(0,0)
 	var v_direction = Vector2(0,0)
 	
@@ -129,19 +133,28 @@ func _physics_process(delta):
 			aim -= 1
 	$Sprites.aim = aim
 	
+	if is_on_floor():
+		d_boost_velocity = 0
+	
+	if  h_direction != 0:
+		looking_direction = h_direction
+		
 	# Update horizontal velocity
-	if h_direction and not control_locked:
+	if h_direction and not control_locked and v_direction == 0:
 		if is_on_floor_check() and h_direction != sign(velocity.x) and velocity.x != 0:
 			velocity.x = 0
 		velocity.x = move_toward(velocity.x, h_direction * SPEED, ACC)
-		looking_direction = h_direction
+		
 		
 	# Apply friction if there is no horizontal direction
 	elif is_on_floor_check():
 		velocity.x = move_toward(velocity.x, 0, GROUND_FRICTION)
-	elif (h_direction == 0 or h_direction != velocity.normalized().x) and not is_on_floor_check() and not control_locked:
+	elif (h_direction == 0 or h_direction != velocity.normalized().x) and not is_on_floor_check():
 		velocity.x = move_toward(velocity.x, 0, AIR_FRICTION)
-		
+	
+	if d_boost_velocity != 0:
+		velocity.x = d_boost_velocity
+	
 	# Update animation state
 	if not $Sprites.state == "damage":
 		if velocity.x != 0 and is_on_floor_check():
@@ -156,12 +169,10 @@ func _physics_process(delta):
 	
 	# Boost
 	if boost_direction != null and boost_time_left > 0 and not is_on_floor_check():
-		print(boost_time_left)
 		velocity = BOOST_SPEED * boost_direction
 		boost_time_left -= delta
 	elif is_on_floor_check():
 		boost_time_left = BOOST_TIME
-		
 	move_and_slide()
 
 func _process(delta):
@@ -207,7 +218,7 @@ func _unhandled_input(event):
 
 	
 	if event.is_action_pressed("pinch"):
-		if Globals.pinch_collected:
+		if Globals.pinch_collected and d_boost_velocity == 0:
 			take_damage(0)
 			
 	if event.is_action_pressed("ball"):
@@ -222,7 +233,7 @@ func _unhandled_input(event):
 			$Sprites/Ball.frame = 0
 			is_ball = true
 		else:
-			$CollisionShape2D.shape.size = Vector2(11, 30)
+			$CollisionShape2D.shape.size = Vector2(11, 26)
 			$TransformAnimation.play("RESET")
 			is_ball = false
 			global_position = empty_body.global_position
@@ -243,10 +254,12 @@ func is_on_floor_check() -> bool:
 	return false
 
 func take_damage(damage):
-	$HurtAudio.play()
 	if $InvFrames.is_playing():
 		return
+	$HurtAudio.play()
+	$DBoostTimer.start()
 	velocity = DAMAGE_BOOST * Vector2(looking_direction, 1)
+	d_boost_velocity = velocity.x
 	$InvFrames.play("inv_frames")
 	$Sprites.state = "damage"
 	health -= damage
@@ -295,10 +308,11 @@ func _on_coyote_time_timeout():
 func _on_jump_buffer_timer_timeout():
 	jump_buffer = false
 
-
 func _on_inv_frames_animation_finished(anim_name: StringName) -> void:
 	$Sprites.state = "idle"
 
-
 func _on_charge_timer_timeout() -> void:
 	shot_charged = true
+
+func _on_d_boost_timer_timeout() -> void:
+	d_boost_velocity = 0

@@ -12,7 +12,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if $FrameTimer.is_stopped():
-		global_position += Vector2(350 * delta, 0).rotated(rotation)
+		global_position += Vector2(600 * delta, 0).rotated(rotation)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):

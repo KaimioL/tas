@@ -1,7 +1,7 @@
 extends Node
 
 var bad_map = true
-var pinch_collected = false
+var pinch_collected = true
 var float_collected = false
 var map_collected = false
 var glitch_collected = false
