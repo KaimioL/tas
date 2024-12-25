@@ -22,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 func explode():
 	if type == "rocket":
 		$ExplosionArea.monitoring = true
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.queue_free()
 	$FrameTimer.start()
 
 func _on_frame_timer_timeout() -> void:

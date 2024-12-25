@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cth8ygx6avx7f" path="res://assets/sprites/backgrounds/ground_bg.png" id="3_x1klt"]
 [ext_resource type="PackedScene" uid="uid://djbpxn11vro5g" path="res://src/enemies/jumper.tscn" id="4_hbnpo"]
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_oq3ma"]
-[ext_resource type="PackedScene" uid="uid://x0rtbtakmw12" path="res://src/door_boost.tscn" id="7_whk6t"]
+[ext_resource type="PackedScene" path="res://src/door_boost.tscn" id="7_whk6t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3m4qp"]
 shader = ExtResource("2_ki5jj")

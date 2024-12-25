@@ -39,7 +39,7 @@ shader_parameter/distortion_effect = 0.0
 shader_parameter/negative_effect = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqybi"]
-size = Vector2(11, 26)
+size = Vector2(10, 26)
 
 [sub_resource type="Animation" id="Animation_xscmv"]
 length = 0.001
@@ -65,7 +65,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, 2)]
+"values": [Vector2(0, 2)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -125,7 +125,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-7, -10)]
+"values": [Vector2(-4, -10)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -137,7 +137,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, -10)]
+"values": [Vector2(4, -10)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -189,7 +189,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.5, -6)]
+"values": [Vector2(0, -6)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -261,7 +261,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2, -10)]
+"values": [Vector2(4, -10)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -273,7 +273,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-7, -10)]
+"values": [Vector2(-4, -10)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -468,7 +468,7 @@ wait_time = 0.1
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 2)
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_oqybi")
 
 [node name="CoyoteTime" type="Timer" parent="."]
@@ -496,15 +496,14 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionRayCasts" type="Node2D" parent="."]
-position = Vector2(3, 0)
 
 [node name="RayCastLeft" type="RayCast2D" parent="CollisionRayCasts"]
-position = Vector2(-7, -10)
+position = Vector2(-4, -10)
 target_position = Vector2(0, 25)
 hit_from_inside = true
 
 [node name="RayCastRight" type="RayCast2D" parent="CollisionRayCasts"]
-position = Vector2(2, -10)
+position = Vector2(4, -10)
 target_position = Vector2(0, 25)
 hit_from_inside = true
 
@@ -528,8 +527,10 @@ text = "HoverDebug: True"
 one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 256.0
-offset_bottom = 224.0
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 248.0
+offset_bottom = 223.0
 color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]

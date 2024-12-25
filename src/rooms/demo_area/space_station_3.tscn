@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="2_5qxfr"]
 [ext_resource type="Texture2D" uid="uid://b7mrhd0lfhknn" path="res://assets/sprites/backgrounds/space_station_bg.png" id="3_lks60"]
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="3_rb01n"]
-[ext_resource type="PackedScene" uid="uid://x0rtbtakmw12" path="res://src/door_boost.tscn" id="4_vu82e"]
+[ext_resource type="PackedScene" path="res://src/door_boost.tscn" id="4_vu82e"]
 [ext_resource type="Texture2D" uid="uid://b6klfmbgoobds" path="res://assets/sprites/misc/monitor.png" id="6_cgujy"]
 [ext_resource type="Texture2D" uid="uid://ci7p215h6palc" path="res://assets/sprites/misc/guard_rail.png" id="7_2mqlm"]
 [ext_resource type="PackedScene" uid="uid://b525sop58wfot" path="res://src/enemies/crawler.tscn" id="9_dav18"]

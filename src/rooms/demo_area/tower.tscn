@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_jovwi"]
 [ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="1_u41t4"]
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="3_7lvi0"]
-[ext_resource type="PackedScene" uid="uid://x0rtbtakmw12" path="res://src/door_boost.tscn" id="3_g8t04"]
+[ext_resource type="PackedScene" path="res://src/door_boost.tscn" id="3_g8t04"]
 [ext_resource type="PackedScene" uid="uid://b525sop58wfot" path="res://src/enemies/crawler.tscn" id="4_doeex"]
 [ext_resource type="TileSet" uid="uid://cmtmexxct5108" path="res://src/tilesets/bts_tileset.tres" id="5_htfsx"]
 [ext_resource type="Script" path="res://src/scripts/bts_layer.gd" id="6_22yaa"]

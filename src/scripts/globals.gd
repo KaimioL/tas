@@ -15,7 +15,6 @@ signal map_type_changed
 signal got_pickup(pickup_name)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == KEY_D:
 				if map_collected:

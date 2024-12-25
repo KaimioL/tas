@@ -7,7 +7,7 @@ const JUMP_VELOCITY = -300.0
 const BALL_JUMP_VELOCITY = -180.0
 const AIR_FRICTION = 5
 const GROUND_FRICTION = 10
-const DAMAGE_BOOST = Vector2(-100, -250)
+const DAMAGE_BOOST = Vector2(-120, -250)
 const BOOST_SPEED = 180
 const BOOST_TIME = 0.8
 const ACC = 10
@@ -223,7 +223,7 @@ func _unhandled_input(event):
 			
 	if event.is_action_pressed("ball"):
 		if not is_ball:
-			$CollisionShape2D.shape.size = Vector2(11, 10)
+			$CollisionShape2D.shape.size = Vector2(10, 10)
 			$TransformAnimation.play("ball")
 			var body = body_scene.instantiate()
 			body.position = position
@@ -233,7 +233,7 @@ func _unhandled_input(event):
 			$Sprites/Ball.frame = 0
 			is_ball = true
 		else:
-			$CollisionShape2D.shape.size = Vector2(11, 26)
+			$CollisionShape2D.shape.size = Vector2(10, 26)
 			$TransformAnimation.play("RESET")
 			is_ball = false
 			global_position = empty_body.global_position
