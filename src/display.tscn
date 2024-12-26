@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://2b8yaub7aewh"]
+[gd_scene load_steps=5 format=3 uid="uid://bipb10ru6e5j7"]
 
 [ext_resource type="PackedScene" uid="uid://2pijfk12oqdo" path="res://src/game.tscn" id="1_x2hu2"]
 [ext_resource type="Shader" path="res://src/shaders/crt.gdshader" id="2_o4mt5"]
