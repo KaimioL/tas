@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://neovharqyncf"]
+
+[ext_resource type="TileSet" uid="uid://cjbptpf5yxk32" path="res://src/tilesets/collision_tileset.tres" id="1_t1b4m"]
+
+[node name="CollisionLayer" type="TileMapLayer"]
+tile_set = ExtResource("1_t1b4m")

@@ -8,6 +8,7 @@ var glitch_collected = false
 var fake_map_collected = false
 var health_collected = false
 var booster_collected = false
+var has_charge_shot = false
 var paused = false
 var ending = 0
 

@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_y1qot"]
 [ext_resource type="Texture2D" uid="uid://dd0f64sjma5ai" path="res://assets/sprites/backgrounds/underground.png" id="6_tysu4"]
 [ext_resource type="Texture2D" uid="uid://h5qgcaivkcu0" path="res://assets/sprites/misc/item_pedestrial.png" id="7_3l7a0"]
-[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/collectible.tscn" id="8_rf4et"]
+[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/blocks/collectible.tscn" id="8_rf4et"]
 [ext_resource type="Texture2D" uid="uid://cgy4ngofkkfvm" path="res://assets/sprites/pickups/energy_box.png" id="9_ulpfr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0rxpk"]

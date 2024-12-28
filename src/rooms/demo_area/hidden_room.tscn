@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_7s1g6"]
 [ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tilesets/tile_set.tres" id="2_w5q41"]
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_08v1v"]
-[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/collectible.tscn" id="5_oq5lq"]
+[ext_resource type="PackedScene" uid="uid://bm50s5u5ot1sw" path="res://src/blocks/collectible.tscn" id="5_oq5lq"]
 [ext_resource type="Texture2D" uid="uid://c608kfpfxyj1y" path="res://assets/sprites/pickups/glitch_pickup.png" id="6_5hwxo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sbyj2"]

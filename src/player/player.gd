@@ -113,7 +113,7 @@ func _physics_process(delta):
 	
 	# Stop jump velocity when jump not pressed
 	if !Input.is_action_pressed("jump") and velocity.y < 0:
-		velocity.y += 2000 * delta
+		velocity.y += 1000 * delta
 	var h_direction = Vector2(0,0)
 	var v_direction = Vector2(0,0)
 	
@@ -207,7 +207,8 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("shoot"):
 		shot_charged = false
-		$ChargeTimer.start()
+		if Globals.has_charge_shot:
+			$ChargeTimer.start()
 		shoot("normal_bullet")
 	
 	if event.is_action_released("shoot"):
@@ -316,3 +317,8 @@ func _on_charge_timer_timeout() -> void:
 
 func _on_d_boost_timer_timeout() -> void:
 	d_boost_velocity = 0
+
+
+func _on_shooting_cooldown_timeout() -> void:
+	if shooting_buffer:
+		shoot("normal_bullet")

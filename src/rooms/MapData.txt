@@ -1434,7 +1434,7 @@
 [2,15,0]
 0,-1,-1,0|0083ff,,,,||surface/surface5.tscn
 [13,19,0]
-0,0,1,0|3b74aa,,,,||
+0,0,1,0|3b74aa,,,,||area1/pinch_item_room.tscn
 [12,19,0]
 1,0,1,-1|3b74aa,,,,||area1/tree.tscn
 [12,18,0]

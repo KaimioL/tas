@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_k163l"]
 [ext_resource type="TileSet" uid="uid://u72sodfjq7s4" path="res://src/tilesets/tile_set.tres" id="2_aptkh"]
 [ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_gd8wq"]
-[ext_resource type="PackedScene" path="res://src/door_boost.tscn" id="3_pqvqi"]
+[ext_resource type="PackedScene" uid="uid://x0rtbtakmw12" path="res://src/blocks/door_boost.tscn" id="3_pqvqi"]
 [ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_i6q7d"]
 [ext_resource type="Texture2D" uid="uid://dd0f64sjma5ai" path="res://assets/sprites/backgrounds/underground.png" id="6_eo36w"]
 

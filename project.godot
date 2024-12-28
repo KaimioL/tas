@@ -31,6 +31,7 @@ Signals="*res://src/scripts/signals.gd"
 Globals="*res://src/scripts/globals.gd"
 BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 flowerwall_pp_autoload="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
+Palette="*res://src/scripts/palette.gd"
 
 [display]
 
@@ -52,6 +53,7 @@ space_station=""
 underground=""
 ground=""
 glitch=""
+door=""
 
 [input]
 
