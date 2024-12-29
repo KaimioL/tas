@@ -486,6 +486,10 @@ wait_time = 0.1
 wait_time = 0.2
 one_shot = true
 
+[node name="PinchCooldown" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [node name="DBoostTimer" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true

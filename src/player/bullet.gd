@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 
 var frame = 0
 var shooting = false
@@ -12,7 +12,14 @@ func _ready():
 
 func _process(delta: float) -> void:
 	if $FrameTimer.is_stopped():
-		global_position += Vector2(600 * delta, 0).rotated(rotation)
+		velocity = Vector2(600, 0).rotated(rotation)
+	else:
+		velocity = Vector2.ZERO
+	var collision = move_and_collide(velocity * delta)
+	if collision != null:
+		if collision.get_collider().has_method("take_damage"):
+			collision.get_collider().take_damage(damage)
+		explode()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):

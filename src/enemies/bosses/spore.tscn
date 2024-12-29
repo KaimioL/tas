@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d21tpdqjqpjb1"]
+
+[ext_resource type="Script" path="res://src/enemies/bosses/spore.gd" id="1_uujra"]
+[ext_resource type="Texture2D" uid="uid://dxs2ioqxx53a7" path="res://assets/sprites/enemies/bosses/big_flower/spore.png" id="2_011pt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhu4v"]
+size = Vector2(8, 8)
+
+[node name="Spore" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_uujra")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_011pt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rhu4v")

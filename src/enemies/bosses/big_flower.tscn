@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://x0dgane76hmr"]
+[gd_scene load_steps=3 format=3 uid="uid://x0dgane76hmr"]
 
-[node name="BigFlower" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://cvn0hsvmv5htu" path="res://icon.svg" id="1_ihv3e"]
+[ext_resource type="Script" path="res://src/enemies/bosses/big_flower.gd" id="1_jc0eh"]
+
+[node name="BigFlower" type="CharacterBody2D"]
+script = ExtResource("1_jc0eh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 97)
+texture = ExtResource("1_ihv3e")

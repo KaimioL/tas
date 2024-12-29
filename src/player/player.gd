@@ -219,8 +219,9 @@ func _unhandled_input(event):
 
 	
 	if event.is_action_pressed("pinch"):
-		if Globals.pinch_collected and d_boost_velocity == 0:
+		if Globals.pinch_collected and d_boost_velocity == 0 and $PinchCooldown.is_stopped():
 			take_damage(0)
+			$PinchCooldown.start()
 			
 	if event.is_action_pressed("ball"):
 		if not is_ball:
