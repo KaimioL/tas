@@ -204,7 +204,7 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("shoot"):
 		shot_charged = false
-		if Globals.has_charge_shot:
+		if Globals.charge_shot_collected:
 			$ChargeTimer.start()
 		shoot("normal_bullet")
 	
