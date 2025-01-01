@@ -1,38 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://ib63wb683bxt"]
+[gd_scene load_steps=13 format=3 uid="uid://ib63wb683bxt"]
 
 [ext_resource type="Script" path="res://src/blocks/door.gd" id="1_pod1t"]
+[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="2_pk3bj"]
 [ext_resource type="Texture2D" uid="uid://wpwmpq8tpsi8" path="res://assets/sprites/blocks/door.png" id="2_sbkqu"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="4_5frox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6j4w6"]
+shader = ExtResource("2_pk3bj")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmy3v"]
 size = Vector2(32, 64)
-
-[sub_resource type="Animation" id="Animation_a20ep"]
-resource_name = "open"
-length = 0.16
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_tur08"]
 length = 0.001
@@ -117,6 +105,34 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_a20ep"]
+resource_name = "open"
+length = 0.16
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kasqg"]
 _data = {
 "RESET": SubResource("Animation_tur08"),
@@ -132,11 +148,13 @@ size = Vector2(32, 25)
 script = ExtResource("1_pod1t")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6j4w6")
 position = Vector2(-16, -32)
 texture = ExtResource("2_sbkqu")
 centered = false
 hframes = 5
 frame = 4
+script = ExtResource("4_5frox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_tmy3v")

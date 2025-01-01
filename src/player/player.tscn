@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ggyc1qonudkw"]
+[gd_scene load_steps=24 format=3 uid="uid://ggyc1qonudkw"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_7jx1s"]
 [ext_resource type="Script" path="res://src/player/player_sprites.gd" id="2_c5ll5"]
@@ -10,6 +10,20 @@
 [ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="8_upd2b"]
 [ext_resource type="AudioStream" uid="uid://c21no0gjkpfx2" path="res://assets/sounds/sound.wav" id="10_ooto0"]
 [ext_resource type="AudioStream" uid="uid://de76ty386nuc7" path="res://assets/sounds/landing.wav" id="11_jnx4k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ydskm"]
+shader = ExtResource("8_upd2b")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = false
+shader_parameter/fps = 6.0
+shader_parameter/red_displacement = 0.0
+shader_parameter/green_displacement = 0.0
+shader_parameter/blue_displacement = 0.0
+shader_parameter/ghost = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/scan_effect = 0.0
+shader_parameter/distortion_effect = 0.0
+shader_parameter/negative_effect = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2wkl7"]
 shader = ExtResource("8_upd2b")
@@ -442,10 +456,12 @@ script = ExtResource("2_c5ll5")
 
 [node name="Ball" type="Sprite2D" parent="Sprites"]
 visible = false
+material = SubResource("ShaderMaterial_ydskm")
 position = Vector2(-8, -17)
 texture = ExtResource("3_tyxmy")
 centered = false
 hframes = 6
+script = ExtResource("5_5to4d")
 
 [node name="Legs" type="Sprite2D" parent="Sprites"]
 material = SubResource("ShaderMaterial_2wkl7")

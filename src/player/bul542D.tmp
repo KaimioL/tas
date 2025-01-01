@@ -55,4 +55,3 @@ shape = SubResource("RectangleShape2D_mvwh3")
 
 [connection signal="timeout" from="FrameTimer" to="." method="_on_frame_timer_timeout"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_explosion_area_body_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

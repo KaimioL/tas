@@ -1,20 +1,25 @@
 extends Node
 
-var palettes: Array[CompressedTexture2D] = [null]
-# 0 - 7 Tileset
-# 8 White flash
-# 9 Enemy type palette #1
-# 10 Enemy type palette #2
-# 11 Enemy type palette #3
-# 12 Player
-# 13 Lots of stuff
-# 14 Beams
-# 15 Enemy type palette #4
+var sprite_palettes: Array[CompressedTexture2D]
+
+# 0 White flash
+# 1 Enemy type palette #1
+# 2 Enemy type palette #2
+# 3 Enemy type palette #3
+# 4 Player
+# 5 Lots of stuff
+# 6 Beams
+# 7 Enemy type palette #4
+
+var background_palettes: Array[CompressedTexture2D]
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	palettes[0] = load("res://assets/sprites/player/player_palette.png")
-
-func get_palette(palette_index):
-	return palettes[palette_index]
+	sprite_palettes.resize(8)
+	background_palettes.resize(8)
+	sprite_palettes[0] = load("res://assets/sprites/player/player_palette.png")
+	sprite_palettes[1] = load("res://assets/sprites/enemies/enemy_palette_1.png")
+func get_sprite_palette(palette_index):
+	return sprite_palettes[palette_index]

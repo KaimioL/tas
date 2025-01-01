@@ -48,3 +48,7 @@ func _on_explosion_area_body_entered(body: Node2D) -> void:
 		direction = 0
 	body.velocity += Vector2(400 * direction, -400)
 	$ExplosionArea.queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()

@@ -1,16 +1,31 @@
-extends Node2D
+extends Sprite2D
+class_name Sprite
 
 var lsprite: Sprite2D
 var rsprite: Sprite2D
 var usprite: Sprite2D
 var dsprite: Sprite2D
 
-@export var palette_index: int = 0
-	
+@export_enum("00-WhiteFlash",
+			 "01-EnemyPalette1",
+			 "02-EnemyPalette2",
+			 "03-EnemyPalette3",
+			 "04-Player",
+			 "05-Stuff",
+			 "06-Beams",
+			 "07-EnemyPalette4",) var palette_index: int = 0
+
+@onready var shader = preload("res://src/shaders/sprite.gdshader")
+
+func _ready() -> void:
+	if material == null:
+		material = ShaderMaterial.new()
+		material.shader = shader
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	material.set_shader_parameter("palette", Palette.get_palette(palette_index))
+	if material != null:
+		material.set_shader_parameter("palette", Palette.get_sprite_palette(palette_index))
 
 func initialize_offscreen_sprites():
 	lsprite = Sprite2D.new()

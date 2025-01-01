@@ -10,7 +10,7 @@ var collectibles: int:
 
 var events: Array[String]
 var starting_position
-var starting_map = "surface/surface3.tscn"
+var starting_map = "area1/hallway.tscn"
 var custom_run = false
 
 signal pickup_screen_closed
