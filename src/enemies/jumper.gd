@@ -3,7 +3,7 @@ extends "res://src/scripts/enemy.gd"
 var damage = 1
 var in_air = false
 
-func _physics_process(delta: float) -> void:
+func physics_loop(delta: float) -> void:
 	if not dead:
 		if global_position.distance_to(player_pos) < 100:
 			if is_on_floor() and not $AnimationPlayer.is_playing() and $JumpCooldown.is_stopped():
@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 			velocity = velocity.move_toward(Vector2.ZERO, delta * 200)
 		move_and_slide()
 
-func _process(delta: float) -> void:
+func process_loop(delta: float) -> void:
 	if not dead:
 		var bodies = $HitBox.get_overlapping_bodies()
 		for b in bodies:

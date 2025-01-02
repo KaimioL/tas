@@ -7,7 +7,7 @@ const FALLING_SPEED = 7000
 const MOVEMENT_SPEED = 3000
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta: float) -> void:
+func physics_loop(delta: float) -> void:
 	if not dead:
 		if abs(global_position.x - player_pos.x) < 50:
 			falling = true
@@ -19,7 +19,7 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 		move_and_slide()
 		
-func _process(delta: float) -> void:
+func process_loop(delta: float) -> void:
 	if not dead:
 		var bodies = $HitBox.get_overlapping_bodies()
 		for b in bodies:

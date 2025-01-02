@@ -105,6 +105,7 @@ _data = {
 [node name="Faller" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_qrkv3")
+health = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4.76837e-07, 4.76837e-07)

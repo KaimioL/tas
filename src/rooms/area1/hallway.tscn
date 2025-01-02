@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://fv25r23utlmy"]
+[gd_scene load_steps=6 format=4 uid="uid://fv25r23utlmy"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_a4q5d"]
 [ext_resource type="TileSet" uid="uid://cjbptpf5yxk32" path="res://src/tilesets/collision_tileset.tres" id="2_qsn0a"]
 [ext_resource type="PackedScene" uid="uid://hgvgsryoj7kl" path="res://src/enemies/faller.tscn" id="3_8dhhb"]
 [ext_resource type="PackedScene" uid="uid://ib63wb683bxt" path="res://src/blocks/door.tscn" id="4_nqdcv"]
+[ext_resource type="PackedScene" uid="uid://djbpxn11vro5g" path="res://src/enemies/jumper.tscn" id="5_xeckj"]
 
 [node name="Hallway" type="Node2D"]
 
@@ -20,8 +21,11 @@ position = Vector2(259, 72)
 
 [node name="Door" parent="." instance=ExtResource("4_nqdcv")]
 position = Vector2(16, 112)
-door_type = 2
+door_type = 1
 
 [node name="Door2" parent="." instance=ExtResource("4_nqdcv")]
 position = Vector2(1008, 112)
 scale = Vector2(-1, 1)
+
+[node name="Jumper" parent="." instance=ExtResource("5_xeckj")]
+position = Vector2(199, 184)
