@@ -33,6 +33,7 @@ BetterTerrain="*res://addons/better-terrain/BetterTerrain.gd"
 flowerwall_pp_autoload="*res://addons/flowerwall_postprocess/scenes/flowerwall_pp.tscn"
 Palette="*res://src/scripts/palette.gd"
 Events="*res://src/scripts/events.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -44,7 +45,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/flowerwall_postprocess/plugin.cfg")
+enabled=PackedStringArray("res://addons/MetroidvaniaSystem/EditorExtension/plugin.cfg", "res://addons/MetroidvaniaSystem/plugin.cfg", "res://addons/better-terrain/plugin.cfg", "res://addons/flowerwall_postprocess/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [global_group]
 
@@ -124,6 +125,7 @@ ball={
 2d_physics/layer_1="Map"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Camera"
 
 [rendering]
 

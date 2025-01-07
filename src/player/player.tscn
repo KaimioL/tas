@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://ggyc1qonudkw"]
+[gd_scene load_steps=25 format=3 uid="uid://ggyc1qonudkw"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_7jx1s"]
 [ext_resource type="Script" path="res://src/player/player_sprites.gd" id="2_c5ll5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bnm84fegjlbbm" path="res://assets/sprites/player/player_palette.png" id="8_4m3rn"]
 [ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="8_upd2b"]
 [ext_resource type="AudioStream" uid="uid://c21no0gjkpfx2" path="res://assets/sounds/sound.wav" id="10_ooto0"]
+[ext_resource type="Script" path="res://src/scripts/camera.gd" id="11_3pyl8"]
 [ext_resource type="AudioStream" uid="uid://de76ty386nuc7" path="res://assets/sounds/landing.wav" id="11_jnx4k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydskm"]
@@ -515,8 +516,6 @@ libraries = {
 "": SubResource("AnimationLibrary_y76ru")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="CollisionRayCasts" type="Node2D" parent="."]
 
 [node name="RayCastLeft" type="RayCast2D" parent="CollisionRayCasts"]
@@ -567,6 +566,11 @@ stream = ExtResource("10_ooto0")
 
 [node name="LandingAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_jnx4k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_smoothed = true
+position_smoothing_enabled = true
+script = ExtResource("11_3pyl8")
 
 [connection signal="shooted" from="." to="Sprites" method="_on_player_shooted"]
 [connection signal="timeout" from="Sprites/FrameTimer" to="Sprites" method="_on_frame_timer_timeout"]
