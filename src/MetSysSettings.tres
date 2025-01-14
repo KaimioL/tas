@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ko7ghqb3p14e"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b4r7vhfsoikgw"]
 
 [ext_resource type="Script" path="res://addons/MetroidvaniaSystem/Scripts/Settings.gd" id="1_eqevi"]
 [ext_resource type="Resource" uid="uid://bc4gm64wkr6jm" path="res://src/map/MapTheme.tres" id="2_vvpqh"]

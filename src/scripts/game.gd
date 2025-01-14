@@ -10,7 +10,7 @@ var collectibles: int:
 
 var events: Array[String]
 var starting_position
-var starting_map = "test_rooms/camera_boundary_test_map.tscn"
+var starting_map = "area1/connector.tscn"
 var custom_run = false
 
 signal pickup_screen_closed

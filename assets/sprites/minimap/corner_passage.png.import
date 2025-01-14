@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://r5hrkg7ijulk"
-path="res://.godot/imported/empty_texture.png-8774a26c0610156900cc572466891a8e.ctex"
+uid="uid://dl8f3cxo7tj7c"
+path="res://.godot/imported/corner_passage.png-f796c59f0017de26924b1bbc0fe564db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/minimap/empty_texture.png"
-dest_files=["res://.godot/imported/empty_texture.png-8774a26c0610156900cc572466891a8e.ctex"]
+source_file="res://assets/sprites/minimap/corner_passage.png"
+dest_files=["res://.godot/imported/corner_passage.png-f796c59f0017de26924b1bbc0fe564db.ctex"]
 
 [params]
 

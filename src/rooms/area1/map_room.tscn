@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://cbwowuwx62e5"]
+[gd_scene load_steps=5 format=4 uid="uid://cbwowuwx62e5"]
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_adn7q"]
 [ext_resource type="TileSet" uid="uid://cjbptpf5yxk32" path="res://src/tilesets/collision_tileset.tres" id="2_2tbcw"]
 [ext_resource type="PackedScene" uid="uid://ib63wb683bxt" path="res://src/blocks/door.tscn" id="3_i0rra"]
+[ext_resource type="PackedScene" uid="uid://dxkinu12orc3c" path="res://src/blocks/map_station.tscn" id="4_wtphy"]
 
 [node name="MapRoom" type="Node2D"]
 
@@ -15,3 +16,7 @@ tile_set = ExtResource("2_2tbcw")
 [node name="Door" parent="." instance=ExtResource("3_i0rra")]
 position = Vector2(240, 112)
 scale = Vector2(-1, 1)
+
+[node name="MapStation" parent="." instance=ExtResource("4_wtphy")]
+position = Vector2(128, 160)
+map_index = 1

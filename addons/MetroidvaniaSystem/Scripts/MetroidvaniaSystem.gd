@@ -392,15 +392,15 @@ func _cleanup_meta():
 	_meta_list.clear()
 	
 func good_to_bad_projection(coords):
-	if Vector2i(coords) == Vector2i(0, 2):
-		return Vector2i(4, 2)
-	if Vector2i(coords.x, coords.y) == Vector2i(0, 4):
-		return Vector2i(0, -2)
-	if Vector2i(coords.x, coords.y) == Vector2i(0, 5):
-		return Vector2i(0, -1)
-	if Vector2i(coords.x, coords.y) == Vector2i(3, 4):
-		return Vector2i(-1, -2)
-	if Vector2i(coords.x, coords.y) == Vector2i(3, 5):
-		return Vector2i(-1, -1)
-	return Vector2i(coords.x, coords.y)
+	#if Vector2i(coords) == Vector2i(0, 2):
+		#return Vector2i(4, 2)
+	#if Vector2i(coords.x, coords.y) == Vector2i(0, 4):
+		#return Vector2i(0, -2)
+	#if Vector2i(coords.x, coords.y) == Vector2i(0, 5):
+		#return Vector2i(0, -1)
+	#if Vector2i(coords.x, coords.y) == Vector2i(3, 4):
+		#return Vector2i(-1, -2)
+	#if Vector2i(coords.x, coords.y) == Vector2i(3, 5):
+		#return Vector2i(-1, -1)
+	return Vector2i(coords.x - 3, coords.y)
 	

@@ -137,7 +137,6 @@ position = Vector2(127, 72)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Map" type="ColorRect" parent="UI"]
-visible = false
 offset_left = 3.0
 offset_top = 3.0
 offset_right = 37.0

@@ -3,9 +3,9 @@ extends Node
 var bad_map = true
 var pinch_collected = true
 var float_collected = false
-var map_collected = false
+var map_collected = true
 var glitch_collected = false
-var fake_map_collected = false
+var fake_map_collected = true
 var health_collected = false
 var booster_collected = false
 var charge_shot_collected = true

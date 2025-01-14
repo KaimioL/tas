@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxkinu12orc3c"]
+
+[ext_resource type="Script" path="res://src/blocks/map_station.gd" id="1_kebgt"]
+[ext_resource type="Texture2D" uid="uid://j86daaeg3k2q" path="res://assets/sprites/blocks/map_station.png" id="2_q6lk1"]
+[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="3_lk454"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6wl3x"]
+size = Vector2(32, 32)
+
+[node name="MapStation" type="Node2D"]
+script = ExtResource("1_kebgt")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6wl3x")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_q6lk1")
+script = ExtResource("3_lk454")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
