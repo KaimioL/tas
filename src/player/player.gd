@@ -190,7 +190,7 @@ func _unhandled_input(event):
 				boost_direction = Input.get_vector("left", "right", "up", "down")
 		else:
 			jump_buffer = true
-			jump_buffer_timer.start()	
+			jump_buffer_timer.start()
 	
 	if event.is_action_released("jump"):
 		boost_direction = null
