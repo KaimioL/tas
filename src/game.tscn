@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://2pijfk12oqdo"]
+[gd_scene load_steps=31 format=3 uid="uid://2pijfk12oqdo"]
 
 [ext_resource type="Script" path="res://src/scripts/game.gd" id="1_6dmpo"]
 [ext_resource type="PackedScene" uid="uid://ggyc1qonudkw" path="res://src/player/player.tscn" id="2_ccato"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://cuvp7w22lm52x" path="res://assets/music/-03.wav" id="17_bk8eo"]
 [ext_resource type="AudioStream" uid="uid://byau6gmwlhqlh" path="res://assets/music/-04.wav" id="18_odydx"]
 [ext_resource type="AudioStream" uid="uid://kql5oj88jhd0" path="res://assets/music/-05.wav" id="19_cotl1"]
+[ext_resource type="Script" path="res://src/scripts/dev_console.gd" id="21_74n5n"]
 
 [sub_resource type="Animation" id="Animation_0two4"]
 length = 0.001
@@ -331,6 +332,9 @@ wait_time = 3.2
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamSynchronized_73b0r")
 autoplay = true
+
+[node name="DevConsole" type="Node" parent="."]
+script = ExtResource("21_74n5n")
 
 [connection signal="health_changed" from="Player" to="." method="_on_player_health_changed"]
 [connection signal="shooted" from="Player" to="." method="_on_player_shooted"]

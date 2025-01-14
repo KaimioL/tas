@@ -50,6 +50,7 @@ offset_top = 55.0
 offset_right = 75.5
 offset_bottom = 86.0
 grow_horizontal = 2
+selected = 0
 item_count = 5
 popup/item_0/text = "Sharp"
 popup/item_1/text = "Crisp low-res"

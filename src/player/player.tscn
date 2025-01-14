@@ -568,7 +568,6 @@ stream = ExtResource("10_ooto0")
 stream = ExtResource("11_jnx4k")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_enabled = true
 script = ExtResource("11_3pyl8")
 
 [connection signal="shooted" from="." to="Sprites" method="_on_player_shooted"]

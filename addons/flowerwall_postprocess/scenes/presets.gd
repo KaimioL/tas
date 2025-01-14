@@ -208,3 +208,12 @@ func _on_preset_selected(value:int) -> void:
 			bloom.button_pressed = true
 			bloom_t.value = 0.14
 			bloom_i.value = 0.8
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("crt_toggle"):
+		if selected != 0:
+			_on_preset_selected(0)
+			select(0)
+		else:
+			_on_preset_selected(2)
+			select(2)
