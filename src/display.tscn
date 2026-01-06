@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bipb10ru6e5j7"]
 
-[ext_resource type="Script" path="res://src/display.gd" id="1_pln8f"]
+[ext_resource type="Script" uid="uid://dkrflvo4djqqm" path="res://src/display.gd" id="1_pln8f"]
 [ext_resource type="PackedScene" uid="uid://2pijfk12oqdo" path="res://src/game.tscn" id="1_x2hu2"]
-[ext_resource type="Shader" path="res://src/shaders/crt.gdshader" id="2_o4mt5"]
+[ext_resource type="Shader" uid="uid://dfsfeg4dd3n2b" path="res://src/shaders/crt.gdshader" id="2_o4mt5"]
 [ext_resource type="PackedScene" uid="uid://cn74tfmybnhix" path="res://addons/flowerwall_postprocess/scenes/flowerwall_crt_config_ui.tscn" id="3_805eb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_845xc"]

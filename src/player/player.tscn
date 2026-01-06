@@ -1,15 +1,15 @@
 [gd_scene load_steps=25 format=3 uid="uid://ggyc1qonudkw"]
 
-[ext_resource type="Script" path="res://src/player/player.gd" id="1_7jx1s"]
-[ext_resource type="Script" path="res://src/player/player_sprites.gd" id="2_c5ll5"]
+[ext_resource type="Script" uid="uid://daj4tma0nsu8" path="res://src/player/player.gd" id="1_7jx1s"]
+[ext_resource type="Script" uid="uid://8y03b1t5be1k" path="res://src/player/player_sprites.gd" id="2_c5ll5"]
 [ext_resource type="Texture2D" uid="uid://dr00irmqo360l" path="res://assets/sprites/player/legs.png" id="3_h0o4r"]
 [ext_resource type="Texture2D" uid="uid://bbuqnhqfjxrad" path="res://assets/sprites/player/ball.png" id="3_tyxmy"]
 [ext_resource type="Texture2D" uid="uid://bhpuvvdudu28a" path="res://assets/sprites/player/torso.png" id="4_qri2m"]
-[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="5_5to4d"]
+[ext_resource type="Script" uid="uid://b1n7iqpr572c6" path="res://src/scripts/sprite.gd" id="5_5to4d"]
 [ext_resource type="Texture2D" uid="uid://bnm84fegjlbbm" path="res://assets/sprites/player/player_palette.png" id="8_4m3rn"]
-[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="8_upd2b"]
+[ext_resource type="Shader" uid="uid://dhkdm8yp3uhhw" path="res://src/shaders/sprite.gdshader" id="8_upd2b"]
 [ext_resource type="AudioStream" uid="uid://c21no0gjkpfx2" path="res://assets/sounds/sound.wav" id="10_ooto0"]
-[ext_resource type="Script" path="res://src/scripts/camera.gd" id="11_3pyl8"]
+[ext_resource type="Script" uid="uid://cn4jp5dnd1w3d" path="res://src/scripts/camera.gd" id="11_3pyl8"]
 [ext_resource type="AudioStream" uid="uid://de76ty386nuc7" path="res://assets/sounds/landing.wav" id="11_jnx4k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ydskm"]
@@ -42,6 +42,7 @@ shader_parameter/negative_effect = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5nibl"]
 shader = ExtResource("8_upd2b")
+shader_parameter/palette = ExtResource("8_4m3rn")
 shader_parameter/skip_first_row = true
 shader_parameter/use_palette_alpha = false
 shader_parameter/fps = 6.0
@@ -53,7 +54,6 @@ shader_parameter/intensity = 0.0
 shader_parameter/scan_effect = 0.0
 shader_parameter/distortion_effect = 0.0
 shader_parameter/negative_effect = 0.0
-shader_parameter/palette = ExtResource("8_4m3rn")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqybi"]
 size = Vector2(10, 26)
@@ -319,8 +319,8 @@ tracks/10/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y76ru"]
 _data = {
-"RESET": SubResource("Animation_xscmv"),
-"ball": SubResource("Animation_bugcp")
+&"RESET": SubResource("Animation_xscmv"),
+&"ball": SubResource("Animation_bugcp")
 }
 
 [sub_resource type="Animation" id="Animation_q7dnd"]
@@ -404,8 +404,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iol4m"]
 _data = {
-"RESET": SubResource("Animation_q7dnd"),
-"inv_frames": SubResource("Animation_j06nc")
+&"RESET": SubResource("Animation_q7dnd"),
+&"inv_frames": SubResource("Animation_j06nc")
 }
 
 [sub_resource type="Animation" id="Animation_je36v"]
@@ -441,8 +441,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5hb"]
 _data = {
-"RESET": SubResource("Animation_je36v"),
-"death": SubResource("Animation_1xtxc")
+&"RESET": SubResource("Animation_je36v"),
+&"death": SubResource("Animation_1xtxc")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -513,7 +513,7 @@ one_shot = true
 
 [node name="TransformAnimation" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_y76ru")
+&"": SubResource("AnimationLibrary_y76ru")
 }
 
 [node name="CollisionRayCasts" type="Node2D" parent="."]
@@ -530,7 +530,7 @@ hit_from_inside = true
 
 [node name="InvFrames" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_iol4m")
+&"": SubResource("AnimationLibrary_iol4m")
 }
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -556,7 +556,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 libraries = {
-"": SubResource("AnimationLibrary_kn5hb")
+&"": SubResource("AnimationLibrary_kn5hb")
 }
 
 [node name="HurtAudio" type="AudioStreamPlayer" parent="."]
@@ -569,6 +569,8 @@ stream = ExtResource("11_jnx4k")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("11_3pyl8")
+
+[node name="JumpRiseTimer" type="Timer" parent="."]
 
 [connection signal="shooted" from="." to="Sprites" method="_on_player_shooted"]
 [connection signal="timeout" from="Sprites/FrameTimer" to="Sprites" method="_on_frame_timer_timeout"]

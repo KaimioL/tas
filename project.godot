@@ -16,7 +16,7 @@ metroidvania_system/settings_file="res://src/MetSysSettings.tres"
 
 config/name="TAS"
 run/main_scene="res://src/display.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 run/max_fps=30
 config/icon="res://icon.svg"
 

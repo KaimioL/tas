@@ -4,6 +4,7 @@ class_name Player
 const SPEED = 100.0
 const SLIDE_SPEED = 250
 const JUMP_VELOCITY = -300.0
+const HIGH_JUMP_VELOCITY = -400.0
 const BALL_JUMP_VELOCITY = -180.0
 const AIR_FRICTION = 5
 const GROUND_FRICTION = 10
@@ -12,7 +13,7 @@ const BOOST_SPEED = 180
 const BOOST_TIME = 0.8
 const ACC = 10
 const GRAVITY = 870
-const MAX_VEL_Y = 1000
+const MAX_VEL_Y = 800
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var on_ground_last_frame = false
@@ -30,8 +31,10 @@ var shooting_buffer = false
 var boost_direction = null
 var boost_time_left = 0
 var is_ball = false
+var is_jump_rising = false
 var empty_body = null
 var shot_charged = false
+var is_jump_hold = false
 var d_boost_velocity = 0
 
 @export var control_locked = false
@@ -102,7 +105,12 @@ func _physics_process(delta):
 		
 	# Handle jump.
 	if jump_buffer and (is_on_floor_check() or coyote) and can_jump:
-		velocity.y = JUMP_VELOCITY if not is_ball else BALL_JUMP_VELOCITY
+		if is_ball:
+			velocity.y = BALL_JUMP_VELOCITY
+		else:
+			velocity.y = JUMP_VELOCITY if not Globals.high_jump_collected else HIGH_JUMP_VELOCITY
+		is_jump_rising = true
+		is_jump_hold = true
 		can_jump = false
 		coyote = false
 		jump_buffer = false
@@ -111,6 +119,13 @@ func _physics_process(delta):
 	# Stop jump velocity when jump not pressed
 	if !Input.is_action_pressed("jump") and velocity.y < 0:
 		velocity.y += 1000 * delta
+		
+	if Input.is_action_pressed("jump") and Globals.hover_collected and not is_jump_hold:
+		hover = true
+	
+	elif !Input.is_action_pressed("jump"):
+		hover = false
+	
 	var h_direction = Vector2(0,0)
 	var v_direction = Vector2(0,0)
 	
@@ -191,6 +206,9 @@ func _unhandled_input(event):
 		else:
 			jump_buffer = true
 			jump_buffer_timer.start()
+			
+	if event.is_action_released("jump"):
+		is_jump_hold = false
 	
 	if event.is_action_released("jump"):
 		boost_direction = null
@@ -248,7 +266,7 @@ func enable_collisions():
 		set_collision_mask_value(1, true)
 	
 func is_on_floor_check() -> bool:
-	if is_on_floor() or in_wall or hover:
+	if is_on_floor() or in_wall:
 		return true
 	return false
 

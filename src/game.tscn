@@ -1,26 +1,26 @@
 [gd_scene load_steps=31 format=3 uid="uid://2pijfk12oqdo"]
 
-[ext_resource type="Script" path="res://src/scripts/game.gd" id="1_6dmpo"]
+[ext_resource type="Script" uid="uid://ccymtm67schv0" path="res://src/scripts/game.gd" id="1_6dmpo"]
 [ext_resource type="PackedScene" uid="uid://ggyc1qonudkw" path="res://src/player/player.tscn" id="2_ccato"]
 [ext_resource type="PackedScene" uid="uid://dch8dyylb7526" path="res://addons/MetroidvaniaSystem/Template/Nodes/Minimap.tscn" id="3_3bab6"]
-[ext_resource type="Script" path="res://src/scripts/map_window.gd" id="4_tv8hf"]
-[ext_resource type="Script" path="res://src/scripts/pickup_screen.gd" id="5_wnu3i"]
+[ext_resource type="Script" uid="uid://cdi6etnf6obin" path="res://src/scripts/map_window.gd" id="4_tv8hf"]
+[ext_resource type="Script" uid="uid://gd5t2unnlfha" path="res://src/scripts/pickup_screen.gd" id="5_wnu3i"]
 [ext_resource type="FontFile" uid="uid://dvnkn0og2y4jv" path="res://assets/fonts/m5x7.ttf" id="6_g53mf"]
 [ext_resource type="FontFile" uid="uid://i14nugpmflby" path="res://assets/fonts/m3x6.ttf" id="7_yeegf"]
 [ext_resource type="AudioStream" uid="uid://lefc6egg4c5q" path="res://assets/sounds/fanfare.wav" id="8_or1di"]
-[ext_resource type="Script" path="res://src/scripts/health.gd" id="8_os6yb"]
+[ext_resource type="Script" uid="uid://bw6vvirsjtssr" path="res://src/scripts/health.gd" id="8_os6yb"]
 [ext_resource type="Texture2D" uid="uid://f8edelrlqsow" path="res://assets/sprites/misc/health_box.png" id="9_and8m"]
 [ext_resource type="Texture2D" uid="uid://buxiy4kteqsom" path="res://assets/sprites/misc/ending_text.png" id="9_tjeqv"]
-[ext_resource type="Shader" path="res://src/shaders/sprite.gdshader" id="9_vouvw"]
+[ext_resource type="Shader" uid="uid://dhkdm8yp3uhhw" path="res://src/shaders/sprite.gdshader" id="9_vouvw"]
 [ext_resource type="AudioStream" uid="uid://w5hmlk5ovdh7" path="res://assets/music/ending.wav" id="10_hex2e"]
-[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="11_te1m2"]
+[ext_resource type="Script" uid="uid://b1n7iqpr572c6" path="res://src/scripts/sprite.gd" id="11_te1m2"]
 [ext_resource type="AudioStream" uid="uid://dixvhbst5yk5l" path="res://assets/music/-00.wav" id="14_hwagd"]
 [ext_resource type="AudioStream" uid="uid://b11pcl4efit66" path="res://assets/music/-01.wav" id="15_rxkvo"]
 [ext_resource type="AudioStream" uid="uid://ckyic3yvo7fir" path="res://assets/music/-02.wav" id="16_q6j0e"]
 [ext_resource type="AudioStream" uid="uid://cuvp7w22lm52x" path="res://assets/music/-03.wav" id="17_bk8eo"]
 [ext_resource type="AudioStream" uid="uid://byau6gmwlhqlh" path="res://assets/music/-04.wav" id="18_odydx"]
 [ext_resource type="AudioStream" uid="uid://kql5oj88jhd0" path="res://assets/music/-05.wav" id="19_cotl1"]
-[ext_resource type="Script" path="res://src/scripts/dev_console.gd" id="21_74n5n"]
+[ext_resource type="Script" uid="uid://dwluljtw2jk3k" path="res://src/scripts/dev_console.gd" id="21_74n5n"]
 
 [sub_resource type="Animation" id="Animation_0two4"]
 length = 0.001
@@ -56,8 +56,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fyia4"]
 _data = {
-"RESET": SubResource("Animation_0two4"),
-"flash": SubResource("Animation_blrfc")
+&"RESET": SubResource("Animation_0two4"),
+&"flash": SubResource("Animation_blrfc")
 }
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k7sgr"]
@@ -110,8 +110,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kn5hb"]
 _data = {
-"RESET": SubResource("Animation_je36v"),
-"death": SubResource("Animation_1xtxc")
+&"RESET": SubResource("Animation_je36v"),
+&"death": SubResource("Animation_1xtxc")
 }
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_73b0r"]
@@ -175,7 +175,7 @@ grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Map/Map/Minimap/ColorRect"]
 libraries = {
-"": SubResource("AnimationLibrary_fyia4")
+&"": SubResource("AnimationLibrary_fyia4")
 }
 autoplay = "flash"
 
@@ -202,7 +202,7 @@ grow_vertical = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MapWindow/ColorRect"]
 libraries = {
-"": SubResource("AnimationLibrary_fyia4")
+&"": SubResource("AnimationLibrary_fyia4")
 }
 autoplay = "flash"
 
@@ -320,7 +320,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
 libraries = {
-"": SubResource("AnimationLibrary_kn5hb")
+&"": SubResource("AnimationLibrary_kn5hb")
 }
 
 [node name="EndingMusic" type="AudioStreamPlayer" parent="."]

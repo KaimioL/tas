@@ -9,6 +9,8 @@ var fake_map_collected = true
 var health_collected = false
 var booster_collected = false
 var charge_shot_collected = true
+var high_jump_collected = true
+var hover_collected = true
 var paused = false
 var ending = 0
 

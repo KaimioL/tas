@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bsg0351mx3b4u" path="res://addons/MetroidvaniaSystem/Nodes/RoomInstance.tscn" id="1_5po6i"]
 [ext_resource type="TileSet" uid="uid://cjbptpf5yxk32" path="res://src/tilesets/collision_tileset.tres" id="2_ri0ba"]
-[ext_resource type="Script" path="res://src/scripts/camera_area.gd" id="3_jcptk"]
+[ext_resource type="Script" uid="uid://kgdevwpding5" path="res://src/scripts/camera_area.gd" id="3_jcptk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hx0j6"]
 size = Vector2(512, 224)

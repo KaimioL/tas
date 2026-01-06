@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxkinu12orc3c"]
 
-[ext_resource type="Script" path="res://src/blocks/map_station.gd" id="1_kebgt"]
+[ext_resource type="Script" uid="uid://cu1435emgvn65" path="res://src/blocks/map_station.gd" id="1_kebgt"]
 [ext_resource type="Texture2D" uid="uid://j86daaeg3k2q" path="res://assets/sprites/blocks/map_station.png" id="2_q6lk1"]
-[ext_resource type="Script" path="res://src/scripts/sprite.gd" id="3_lk454"]
+[ext_resource type="Script" uid="uid://b1n7iqpr572c6" path="res://src/scripts/sprite.gd" id="3_lk454"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6wl3x"]
 size = Vector2(32, 32)
